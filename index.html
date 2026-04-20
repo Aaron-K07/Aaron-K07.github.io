@@ -84,7 +84,6 @@ section{padding:52px 56px;max-width:1080px;margin:0 auto}
 .tool-tag{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px}
 .tool-bar-wrap{width:60px;height:3px;background:rgba(42,95,138,0.3)}
 .tool-bar{height:100%;background:var(--accent)}
-/* PROJECTS — 2-col grid, flagship spans full width in position 3 */
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .proj-card{border:1px solid var(--line);background:rgba(26,58,92,0.12);overflow:hidden;transition:border-color .2s}
 .proj-card:hover{border-color:var(--accent)}
@@ -129,12 +128,21 @@ section{padding:52px 56px;max-width:1080px;margin:0 auto}
 .status-panel{border:1px solid var(--line);padding:14px;background:rgba(26,58,92,0.08);margin-top:12px}
 .status-panel p{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);line-height:2}
 .status-panel span{color:var(--green)}
+
+/* CONTACT FORM */
 .form-panel{border:1px solid var(--line);padding:20px;background:rgba(26,58,92,0.08)}
 .f-group{margin-bottom:14px}
 .f-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;display:block;margin-bottom:4px}
 .f-input{width:100%;background:rgba(11,24,37,0.8);border:1px solid var(--line);color:var(--text-bright);font-family:'Share Tech Mono',monospace;font-size:12px;padding:8px 11px;outline:none;transition:border-color .2s}
 .f-input:focus{border-color:var(--accent)}
 textarea.f-input{height:80px;resize:vertical}
+.f-error{font-family:'Share Tech Mono',monospace;font-size:10px;color:#f05050;margin-top:4px;display:block}
+.f-success{border:1px solid var(--green);padding:20px;text-align:center;background:rgba(74,240,160,0.05)}
+.f-success-icon{font-size:28px;margin-bottom:8px}
+.f-success-title{font-family:'Orbitron',monospace;font-size:14px;color:var(--green);margin-bottom:6px}
+.f-success-msg{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+button[type=submit]:disabled{opacity:0.5;cursor:not-allowed}
+
 footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-items:center;justify-content:space-between;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);position:relative;z-index:1}
 .divider{display:flex;align-items:center;gap:10px;margin:48px 0 0;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--line)}
@@ -153,7 +161,7 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
 
 <div class="corner tl"></div><div class="corner tr"></div>
 <div class="corner bl"></div><div class="corner br"></div>
-<div class="dwg-stamp">DWG NO. <span>AK-PORT-001</span><br>TITLE: <span>AARON KUMAR — PORTFOLIO</span><br>SCALE: 1:1 &nbsp; REV: F &nbsp; DATE: 2026</div>
+<div class="dwg-stamp">DWG NO. <span>AK-PORT-001</span><br>TITLE: <span>AARON KUMAR — PORTFOLIO</span><br>SCALE: 1:1 &nbsp; REV: G &nbsp; DATE: 2026</div>
 <div class="rev">McMaster University · Mechanical Engineering<br>PROPRIETARY — DO NOT REPRODUCE</div>
 
 <nav>
@@ -177,7 +185,6 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
 
 <main>
 
-<!-- HERO -->
 <section id="hero">
   <svg class="hero-schematic" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M200 40 L230 200 L240 400 L200 460 L160 400 L170 200 Z" stroke="#4a9fd4" stroke-width="1"/>
@@ -189,20 +196,10 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
     <ellipse cx="200" cy="460" rx="30" ry="12" stroke="#5bc8f5" stroke-width="1" stroke-dasharray="3,3"/>
     <line x1="50" y1="300" x2="350" y2="300" stroke="#2a5f8a" stroke-width="0.5" stroke-dasharray="8,4"/>
     <line x1="200" y1="30" x2="200" y2="520" stroke="#2a5f8a" stroke-width="0.5" stroke-dasharray="8,4"/>
-    <line x1="50" y1="540" x2="350" y2="540" stroke="#4a9fd4" stroke-width="0.5"/>
-    <line x1="50" y1="537" x2="50" y2="543" stroke="#4a9fd4" stroke-width="0.8"/>
-    <line x1="350" y1="537" x2="350" y2="543" stroke="#4a9fd4" stroke-width="0.8"/>
-    <text x="165" y="555" fill="#4a9fd4" font-family="monospace" font-size="8">300mm</text>
     <circle cx="200" cy="130" r="3" stroke="#5bc8f5" stroke-width="0.8" fill="none"/>
     <circle cx="200" cy="300" r="5" stroke="#5bc8f5" stroke-width="0.8" fill="none"/>
     <text x="208" y="132" fill="#4a9fd4" font-family="monospace" font-size="7">CP</text>
     <text x="208" y="302" fill="#4a9fd4" font-family="monospace" font-size="7">CG</text>
-    <text x="55" y="52" fill="#4a9fd4" font-family="monospace" font-size="7">NOSECONE</text>
-    <text x="55" y="218" fill="#4a9fd4" font-family="monospace" font-size="7">BODY TUBE</text>
-    <text x="55" y="418" fill="#4a9fd4" font-family="monospace" font-size="7">FINS</text>
-    <line x1="78" y1="48" x2="174" y2="76" stroke="#4a9fd4" stroke-width="0.4"/>
-    <line x1="88" y1="213" x2="164" y2="218" stroke="#4a9fd4" stroke-width="0.4"/>
-    <line x1="78" y1="413" x2="148" y2="428" stroke="#4a9fd4" stroke-width="0.4"/>
   </svg>
   <div class="hero-content">
     <p class="hero-eyebrow">// ENGINEERING PORTFOLIO — INITIALIZING</p>
@@ -234,7 +231,6 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" style="padding-top:16px">
   <div class="sec-label">SPECIFICATION SHEET</div>
   <h2 class="sec-title">About Me</h2>
@@ -300,9 +296,6 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
           <text x="218" y="130" fill="#4a9fd4" font-family="monospace" font-size="7">ENG</text>
           <text x="355" y="48" fill="#4a9fd4" font-family="monospace" font-size="7">V-STAB</text>
           <text x="430" y="80" fill="#3d84b8" font-family="monospace" font-size="7">H-STAB</text>
-          <line x1="27" y1="86" x2="55" y2="90" stroke="#5bc8f5" stroke-width="0.4"/>
-          <line x1="193" y1="34" x2="210" y2="55" stroke="#4a9fd4" stroke-width="0.4"/>
-          <line x1="356" y1="52" x2="368" y2="65" stroke="#4a9fd4" stroke-width="0.4"/>
           <text x="130" y="175" fill="#3d84b8" font-family="monospace" font-size="7">PLAN VIEW — SCALE 1:200</text>
         </svg>
       </div>
@@ -317,49 +310,28 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
   </div>
 </section>
 
-<!-- PROJECTS — order: End Effector, Motorized Storage, ASTRAEUS II (flagship), HHO -->
 <section id="projects">
   <div class="sec-label">TECHNICAL DRAWINGS</div>
   <h2 class="sec-title">Projects</h2>
   <div class="proj-grid">
-
-    <!-- 1: Robotic End Effector -->
     <div class="proj-card">
-      <div class="proj-header">
-        <span class="proj-id">PROJ-001 // ENG1P13</span>
-        <span class="status s-done">● COMPLETE</span>
-      </div>
+      <div class="proj-header"><span class="proj-id">PROJ-001 // ENG1P13</span><span class="status s-done">● COMPLETE</span></div>
       <div class="proj-body">
         <h3 class="proj-title">Robotic End Effector</h3>
         <p class="proj-desc">Gear-driven end effector for a Q-arm robotic system simulating warehouse order fulfillment. Served as Subject Matter Expert — designed initial concept, led all CAD iterations, produced exploded drawings, and wrote the Python customer_summary() function. Redesigned final gripper to extend leverage and shorten arms for improved torque output.</p>
-        <div class="proj-tags">
-          <span class="tag">Autodesk Inventor</span><span class="tag">Python</span><span class="tag">Gear Design</span><span class="tag">Robotics</span><span class="tag">3D Printing</span>
-        </div>
-        <div class="proj-links">
-          <a href="#" class="plink">View Full Report</a>
-        </div>
+        <div class="proj-tags"><span class="tag">Autodesk Inventor</span><span class="tag">Python</span><span class="tag">Gear Design</span><span class="tag">Robotics</span><span class="tag">3D Printing</span></div>
+        <div class="proj-links"><a href="#" class="plink">View Full Report</a></div>
       </div>
     </div>
-
-    <!-- 2: Motorized Storage Device -->
     <div class="proj-card">
-      <div class="proj-header">
-        <span class="proj-id">PROJ-002 // ENG1P13</span>
-        <span class="status s-done">● COMPLETE</span>
-      </div>
+      <div class="proj-header"><span class="proj-id">PROJ-002 // ENG1P13</span><span class="status s-done">● COMPLETE</span></div>
       <div class="proj-body">
         <h3 class="proj-title">Motorized Storage Device</h3>
         <p class="proj-desc">Motorized lift for a powerchair user with rheumatoid arthritis. Rack-and-pinion drive with gearbox-amplified DC motors, parallel 9V batteries, and single-button interface for autonomous item retrieval. Led all CAD iterations and ~80% of electronics and wiring; used BambuLab P1S 3D printer for same-day rapid prototyping.</p>
-        <div class="proj-tags">
-          <span class="tag">Autodesk Inventor</span><span class="tag">3D Printing</span><span class="tag">Rack &amp; Pinion</span><span class="tag">Embedded Systems</span><span class="tag">Assistive Tech</span>
-        </div>
-        <div class="proj-links">
-          <a href="https://loving-orchestra-a90.notion.site/P3-Motorized-Storage-Device-2dd60f3d73ef811fb88ddfb97546571e" class="plink">View Full Report</a>
-        </div>
+        <div class="proj-tags"><span class="tag">Autodesk Inventor</span><span class="tag">3D Printing</span><span class="tag">Rack &amp; Pinion</span><span class="tag">Embedded Systems</span><span class="tag">Assistive Tech</span></div>
+        <div class="proj-links"><a href="https://loving-orchestra-a90.notion.site/P3-Motorized-Storage-Device-2dd60f3d73ef811fb88ddfb97546571e" class="plink">View Full Report</a></div>
       </div>
     </div>
-
-    <!-- 3: ASTRAEUS II — flagship, spans full width -->
     <div class="proj-card flagship">
       <div class="proj-schematic">
         <svg width="100%" height="88" viewBox="0 0 900 88" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -377,42 +349,25 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
           <text x="715" y="80" fill="#3d84b8" font-family="monospace" font-size="7">SOLAR ARRAY ▷</text>
         </svg>
       </div>
-      <div class="proj-header">
-        <span class="proj-id">PROJ-003 // NSS COMPETITION · FLAGSHIP</span>
-        <span class="status s-award">★ 1ST PLACE — NSS 2025</span>
-      </div>
+      <div class="proj-header"><span class="proj-id">PROJ-003 // NSS COMPETITION · FLAGSHIP</span><span class="status s-award">★ 1ST PLACE — NSS 2025</span></div>
       <div class="proj-body">
         <h3 class="proj-title">ASTRAEUS II: Eden Garden Module</h3>
         <p class="proj-desc">Co-developed an award-winning space agriculture habitat for long-duration human settlement, submitted to the NSS Live in a Healthy Space Design Competition. Led structural design and systems integration of a sustainable extraterrestrial agricultural module. Key innovations: magnetorheological fluid tilling system, AI-powered automated pollination vehicle, frequency-optimized plant growth (PAFT system), and integrated hydroponic/aeroponic/soil-based farming — achieving near 100% space efficiency and capacity for up to 592,391 inhabitants per settlement.</p>
-        <div class="proj-tags">
-          <span class="tag">Shapr3D</span><span class="tag">Space Systems</span><span class="tag">Structural Design</span><span class="tag">Systems Integration</span><span class="tag">Research</span>
-        </div>
-        <div class="proj-links">
-          <a href="#" class="plink">Full Report</a>
-          <a href="#" class="plink">NSS Competition</a>
-        </div>
+        <div class="proj-tags"><span class="tag">Shapr3D</span><span class="tag">Space Systems</span><span class="tag">Structural Design</span><span class="tag">Systems Integration</span><span class="tag">Research</span></div>
+        <div class="proj-links"><a href="#" class="plink">Full Report</a><a href="#" class="plink">NSS Competition</a></div>
       </div>
     </div>
-
-    <!-- 4: HHO Generator & Ion Thruster -->
     <div class="proj-card flagship">
-      <div class="proj-header">
-        <span class="proj-id">PROJ-004 // INDEPENDENT</span>
-        <span class="status s-done">● COMPLETE 2024</span>
-      </div>
+      <div class="proj-header"><span class="proj-id">PROJ-004 // INDEPENDENT</span><span class="status s-done">● COMPLETE 2024</span></div>
       <div class="proj-body">
         <h3 class="proj-title">HHO Generator &amp; Ion Thruster</h3>
         <p class="proj-desc">Built and tested a functional hydrogen-oxygen generator prototype exploring electrolysis and clean-energy applications. Alongside this, conducted independent ion thruster and small-scale propulsion design work — hands-on exploration of experimental propulsion concepts.</p>
-        <div class="proj-tags">
-          <span class="tag">Electrolysis</span><span class="tag">Prototyping</span><span class="tag">Clean Energy</span><span class="tag">Propulsion</span><span class="tag">Experimental</span>
-        </div>
+        <div class="proj-tags"><span class="tag">Electrolysis</span><span class="tag">Prototyping</span><span class="tag">Clean Energy</span><span class="tag">Propulsion</span><span class="tag">Experimental</span></div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="sec-label">OPERATIONAL LOG</div>
   <h2 class="sec-title">Experience</h2>
@@ -453,7 +408,6 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="sec-label">MATERIAL PROPERTIES</div>
   <h2 class="sec-title">Skills &amp; Tools</h2>
@@ -482,7 +436,6 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="sec-label">INTERFACE PANEL</div>
   <h2 class="sec-title">Contact</h2>
@@ -498,12 +451,31 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
         <p>INSTITUTION: McMaster University<br>PROGRAM: B.Eng. Mechanical Engineering<br>SEEKING: Engineering Internship / Co-op<br>TERM: Summer / Fall 2027<br>STATUS: <span>● AVAILABLE</span></p>
       </div>
     </div>
-    <div class="form-panel">
-      <div class="f-group"><label class="f-lbl">// NAME</label><input type="text" class="f-input" placeholder="Your Name"></div>
-      <div class="f-group"><label class="f-lbl">// EMAIL</label><input type="email" class="f-input" placeholder="your@email.com"></div>
-      <div class="f-group"><label class="f-lbl">// MESSAGE</label><textarea class="f-input" placeholder="What's on your mind?"></textarea></div>
-      <button class="btn btn-p" style="width:100%">TRANSMIT MESSAGE →</button>
+
+    <!-- FORMSPREE CONTACT FORM -->
+    <div>
+      <div id="form-container" class="form-panel">
+        <form id="contact-form" action="https://formspree.io/f/xqewdpgg" method="POST">
+          <div class="f-group">
+            <label class="f-lbl" for="name">// NAME</label>
+            <input type="text" id="name" name="name" class="f-input" placeholder="Your Name" required>
+          </div>
+          <div class="f-group">
+            <label class="f-lbl" for="email">// EMAIL</label>
+            <input type="email" id="email" name="email" class="f-input" placeholder="your@email.com" required>
+            <span id="email-error" class="f-error" style="display:none"></span>
+          </div>
+          <div class="f-group">
+            <label class="f-lbl" for="message">// MESSAGE</label>
+            <textarea id="message" name="message" class="f-input" placeholder="What's on your mind?" required></textarea>
+            <span id="message-error" class="f-error" style="display:none"></span>
+          </div>
+          <span id="form-error" class="f-error" style="display:none;margin-bottom:10px"></span>
+          <button type="submit" id="submit-btn" class="btn btn-p" style="width:100%">TRANSMIT MESSAGE →</button>
+        </form>
+      </div>
     </div>
+
   </div>
   <div class="divider">END OF DOCUMENT</div>
 </section>
@@ -512,9 +484,77 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
 
 <footer>
   <span>© 2026 AARON KUMAR — ALL RIGHTS RESERVED</span>
-  <span>DWG NO. AK-PORT-001 REV F</span>
+  <span>DWG NO. AK-PORT-001 REV G</span>
   <span>McMaster University · B.Eng. Mechanical Engineering</span>
 </footer>
+
+<script>
+const form = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const formError = document.getElementById('form-error');
+const emailError = document.getElementById('email-error');
+const messageError = document.getElementById('message-error');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // Clear previous errors
+  formError.style.display = 'none';
+  emailError.style.display = 'none';
+  messageError.style.display = 'none';
+
+  // Disable button while sending
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'TRANSMITTING...';
+
+  try {
+    const data = new FormData(form);
+    const response = await fetch('https://formspree.io/f/xqewdpgg', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      // Show success state
+      document.getElementById('form-container').innerHTML = `
+        <div class="f-success">
+          <div class="f-success-icon">✓</div>
+          <div class="f-success-title">TRANSMISSION RECEIVED</div>
+          <div class="f-success-msg">Message delivered successfully.<br>I'll get back to you soon.</div>
+        </div>`;
+    } else {
+      // Show field-level errors if any
+      if (result.errors) {
+        result.errors.forEach(err => {
+          if (err.field === 'email') {
+            emailError.textContent = err.message;
+            emailError.style.display = 'block';
+          } else if (err.field === 'message') {
+            messageError.textContent = err.message;
+            messageError.style.display = 'block';
+          } else {
+            formError.textContent = err.message;
+            formError.style.display = 'block';
+          }
+        });
+      } else {
+        formError.textContent = 'Transmission failed. Please try again.';
+        formError.style.display = 'block';
+      }
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'TRANSMIT MESSAGE →';
+    }
+  } catch(err) {
+    formError.textContent = 'Network error. Please try again.';
+    formError.style.display = 'block';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'TRANSMIT MESSAGE →';
+  }
+});
+</script>
 
 </body>
 </html>
