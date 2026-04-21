@@ -11,12 +11,15 @@
 html{scroll-behavior:smooth}
 body{background-color:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(42,95,138,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(42,95,138,0.12) 1px,transparent 1px),linear-gradient(rgba(42,95,138,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(42,95,138,0.04) 1px,transparent 1px);background-size:80px 80px,80px 80px,20px 20px,20px 20px;pointer-events:none;z-index:0}
-.corner{position:fixed;width:34px;height:34px;border-color:var(--line-light);border-style:solid;z-index:10;opacity:0.45}
+.corner{position:fixed;width:34px;height:34px;border-color:var(--line-light);border-style:solid;z-index:10;opacity:0.45;transition:opacity 0.3s}
 .corner.tl{top:12px;left:12px;border-width:2px 0 0 2px}.corner.tr{top:12px;right:12px;border-width:2px 2px 0 0}
 .corner.bl{bottom:12px;left:12px;border-width:0 0 2px 2px}.corner.br{bottom:12px;right:12px;border-width:0 2px 2px 0}
-.dwg-stamp{position:fixed;bottom:12px;left:12px;border:1px solid var(--line);padding:5px 10px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);line-height:1.9;z-index:10;background:rgba(11,24,37,0.88)}
+.dwg-stamp{position:fixed;bottom:12px;left:12px;border:1px solid var(--line);padding:5px 10px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);line-height:1.9;z-index:10;background:rgba(11,24,37,0.88);transition:opacity 0.3s}
 .dwg-stamp span{color:var(--accent)}
-.rev{position:fixed;bottom:12px;right:12px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);text-align:right;z-index:10}
+.rev{position:fixed;bottom:12px;right:12px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);text-align:right;z-index:10;transition:opacity 0.3s}
+.stamp-hidden{opacity:0!important;pointer-events:none}
+.c-link-btn{display:block;width:100%;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent);text-decoration:none;padding:9px 0;border-bottom:1px solid rgba(42,95,138,0.2);letter-spacing:1px;transition:color .2s}
+.c-link-btn:hover{color:var(--gold)}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,24,37,0.94);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;backdrop-filter:blur(10px);gap:12px}
 .nav-logo{font-family:'Orbitron',monospace;font-size:13px;color:var(--accent);letter-spacing:3px;white-space:nowrap;flex-shrink:0}
 .nav-logo span{color:var(--gold)}
@@ -391,6 +394,7 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
     <div class="hero-btns">
       <a href="#projects" class="btn btn-p">View Projects</a>
       <a href="#contact" class="btn btn-o">Get In Touch</a>
+      <a href="https://www.linkedin.com/in/aaron-kumar-6680131b5" target="_blank" class="btn btn-o">LinkedIn ↗</a>
       <a href="https://aaron-k07.github.io/resume.pdf" target="_blank" class="btn btn-o">Resume ↗</a>
     </div>
   </div>
@@ -607,10 +611,9 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
   <div class="contact-grid">
     <div>
       <div class="contact-panel">
-        <div class="c-row"><div class="c-icon">@</div><div><div class="c-lbl">EMAIL</div><div class="c-val">aaron05k55@gmail.com</div></div></div>
-        <div class="c-row"><div class="c-icon">in</div><div><div class="c-lbl">LINKEDIN</div><div class="c-val">linkedin.com/in/aaron-kumar-6680131b5</div></div></div>
-        <div class="c-row"><div class="c-icon">&#9742;</div><div><div class="c-lbl">PHONE</div><div class="c-val">647-971-1874</div></div></div>
-        <div class="c-row"><div class="c-icon">&#8853;</div><div><div class="c-lbl">LOCATION</div><div class="c-val">Brampton, ON · Open to Remote</div></div></div>
+        <div class="c-row"><div class="c-icon">&#127979;</div><div><div class="c-lbl">UNIVERSITY</div><div class="c-val">McMaster · B.Eng. Mechanical Engineering</div></div></div>
+        <a href="https://www.linkedin.com/in/aaron-kumar-6680131b5" target="_blank" class="c-link-btn"><div style="display:flex;align-items:center;gap:10px"><div class="c-icon" style="flex-shrink:0">in</div><div><div class="c-lbl">LINKEDIN</div><div class="c-val">aaron-kumar-6680131b5 ↗</div></div></div></a>
+        <div class="c-row"><div class="c-icon">&#8853;</div><div><div class="c-lbl">LOCATION</div><div class="c-val">Ontario, Canada · Open to Remote</div></div></div>
       </div>
       <div class="status-panel">
         <p>INSTITUTION: McMaster University<br>PROGRAM: B.Eng. Mechanical Engineering<br>SEEKING: Engineering Internship / Co-op<br>TERM: Summer / Fall 2027<br>STATUS: <span>&#9679; AVAILABLE</span></p>
@@ -669,6 +672,21 @@ form.addEventListener('submit',async function(e){
     }
   }catch(err){formError.textContent='Network error. Please try again.';formError.style.display='block';submitBtn.disabled=false;submitBtn.textContent='TRANSMIT MESSAGE \u2192';}
 });
+
+// Fade corner stamps before they overlap the footer
+const footer=document.querySelector('footer');
+const stamp=document.querySelector('.dwg-stamp');
+const rev=document.querySelector('.rev');
+const corners=document.querySelectorAll('.corner.bl,.corner.br');
+function checkStampFade(){
+  if(!footer||!stamp) return;
+  const footerTop=footer.getBoundingClientRect().top;
+  const threshold=80;
+  const shouldHide=footerTop<window.innerHeight-threshold;
+  [stamp,rev,...corners].forEach(el=>{if(el) el.classList.toggle('stamp-hidden',shouldHide);});
+}
+window.addEventListener('scroll',checkStampFade,{passive:true});
+checkStampFade();
 </script>
 </body>
 </html>
