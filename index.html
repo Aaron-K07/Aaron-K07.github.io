@@ -35,6 +35,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(42,95,138,0.10) 1px,transparent 1px),linear-gradient(90deg,rgba(42,95,138,0.10) 1px,transparent 1px);background-size:80px 80px;pointer-events:none;z-index:0}
 a{color:var(--cyan)}
+#scroll-prog{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold));z-index:200}
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .skip{position:absolute;left:-999px;top:8px;background:var(--cyan);color:var(--bg);padding:8px 14px;z-index:300;font-weight:600;text-decoration:none}
 .skip:focus{left:8px}
@@ -42,12 +43,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,24,37,0.94);border-bottom:1px solid var(--rule);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .nav-inner{max-width:1120px;margin:0 auto;height:60px;padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.nav-logo{font-family:var(--cond);font-weight:700;font-size:21px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;white-space:nowrap}
+.nav-logo{font-family:var(--cond);font-weight:700;font-size:21px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:10px}
+.nav-logo::before{content:'';width:9px;height:9px;background:var(--gold);transform:rotate(45deg)}
+.nav-logo span{color:var(--cyan)}
 .nav-links{display:flex;align-items:center;gap:26px;list-style:none}
 .nav-links a{font-size:15px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .15s}
-.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a:hover{color:var(--ink)}.nav-links a.active{color:var(--cyan)}
 .nav-links a.nav-cta{color:var(--bg);background:var(--cyan);padding:7px 14px;font-weight:600}
-.nav-links a.nav-cta:hover{background:var(--ink);color:var(--bg)}
+.nav-links a.nav-cta:hover{background:var(--gold);color:var(--bg)}
 .nav-toggle{display:none;background:none;border:1px solid var(--rule-strong);color:var(--ink);font:500 15px var(--sans);padding:6px 12px;cursor:pointer}
 .nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(11,24,37,0.98);border-bottom:1px solid var(--rule);z-index:99;flex-direction:column;padding:8px 20px 14px}
 .nav-drawer a{font-size:17px;color:var(--text);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(35,79,116,0.5)}
@@ -57,15 +60,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,24,37,0.9
 
 main{position:relative;z-index:1;padding-top:60px}
 section{padding:72px 40px;max-width:1120px;margin:0 auto;scroll-margin-top:60px}
-.sec-title{font-family:var(--cond);font-weight:600;font-size:38px;line-height:1.1;color:var(--ink);margin-bottom:28px;display:flex;align-items:center;gap:18px}
-.sec-title::after{content:'';flex:1;height:1px;background:var(--rule)}
+.sec-title{font-family:var(--cond);font-weight:600;font-size:38px;line-height:1.1;color:var(--ink);margin-bottom:28px;display:flex;align-items:center;gap:16px}
+.sec-title::before{content:'';flex:none;width:11px;height:11px;background:var(--gold);transform:rotate(45deg)}
+.sec-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--cyan),rgba(91,200,245,0.08))}
 
 /* HERO */
 #hero{min-height:calc(100vh - 60px);display:flex;align-items:center;padding-top:56px;padding-bottom:56px;position:relative}
 .hero-content{max-width:640px;position:relative;z-index:2}
+.hero-name .hi{color:var(--cyan)}
 .hero-name{font-family:var(--cond);font-weight:700;font-size:clamp(64px,10vw,116px);line-height:.9;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);margin-bottom:18px}
-.hero-role{font-family:var(--cond);font-weight:500;font-size:24px;line-height:1.3;color:var(--cyan);margin-bottom:18px}
-.hero-bio{font-size:18px;color:var(--text);max-width:58ch;margin-bottom:28px}
+.hero-role{font-family:var(--cond);font-weight:500;font-size:24px;line-height:1.3;color:var(--gold);margin-bottom:18px}
+.hero-bio{font-size:18px;color:var(--text);max-width:58ch;margin-bottom:28px;border-left:2px solid var(--cyan);padding-left:16px}
 .hero-rocket{position:absolute;right:40px;top:50%;transform:translateY(-50%);width:300px;opacity:.85;pointer-events:none;display:none}
 @media(min-width:1040px){.hero-rocket{display:block}}
 
@@ -74,27 +79,31 @@ section{padding:72px 40px;max-width:1120px;margin:0 auto;scroll-margin-top:60px}
 .badge-item:last-child{border-right:none}
 .badge-kicker{font-size:13px;font-weight:500;color:var(--muted);margin-bottom:2px}
 .badge-title{font-family:var(--cond);font-weight:600;font-size:21px;line-height:1.15;color:var(--ink);margin-bottom:4px}
-.badge-item.award .badge-title{color:var(--gold)}
+.badge-item.b-green{background:rgba(95,224,168,0.06)}.badge-item.b-green .badge-kicker,.badge-item.b-green .badge-title{color:var(--green)}
+.badge-item.b-blue{background:rgba(91,200,245,0.06)}.badge-item.b-blue .badge-kicker,.badge-item.b-blue .badge-title{color:var(--cyan)}
+.badge-item.award{background:rgba(240,192,64,0.06)}.badge-item.award .badge-kicker,.badge-item.award .badge-title{color:var(--gold)}
+.badge-kicker{font-weight:600}
 .badge-sub{font-size:14px;line-height:1.5;color:var(--muted)}
 
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 .btn{font-family:var(--sans);font-size:16px;font-weight:600;padding:11px 22px;text-decoration:none;cursor:pointer;border:1px solid transparent;display:inline-block;transition:background .15s,border-color .15s,color .15s}
 .btn-p{background:var(--cyan);color:var(--bg)}
-.btn-p:hover{background:var(--ink)}
+.btn-p:hover{background:var(--gold)}
 .btn-o{background:transparent;color:var(--ink);border-color:var(--rule-strong)}
-.btn-o:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-o:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(91,200,245,0.06)}
 
 /* ABOUT */
 .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);background:var(--panel);margin-bottom:24px}
 .stat{padding:18px 18px 16px;border-right:1px solid var(--rule)}
 .stat:last-child{border-right:none}
 .stat-n{font-family:var(--cond);font-weight:700;font-size:40px;line-height:1;color:var(--cyan);display:block;margin-bottom:6px}
+.stat-gold .stat-n{color:var(--gold)}.stat-green .stat-n{color:var(--green)}
 .stat-l{font-size:14px;line-height:1.4;color:var(--muted);display:block}
 .about-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:start}
 .spec-box{border:1px solid var(--rule);padding:22px 24px;background:var(--panel)}
-.spec-box h3{font-family:var(--cond);font-weight:600;font-size:22px;color:var(--ink);margin-bottom:10px}
+.spec-box h3{font-family:var(--cond);font-weight:600;font-size:22px;color:var(--gold);margin-bottom:10px}
 .spec-box p{margin-bottom:14px;max-width:62ch}
-.spec-lbl{font-size:14px;font-weight:600;color:var(--muted);margin:14px 0 4px}
+.spec-lbl{font-size:14px;font-weight:600;color:var(--cyan);margin:14px 0 4px}
 .spec-list{list-style:none}
 .spec-list li{padding:7px 0 7px 18px;border-bottom:1px solid rgba(35,79,116,0.55);position:relative}
 .spec-list li:last-child{border-bottom:none}
@@ -104,43 +113,78 @@ section{padding:72px 40px;max-width:1120px;margin:0 auto;scroll-margin-top:60px}
 /* EXPERIENCE */
 .exp-list{border-top:1px solid var(--rule)}
 .exp-item{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--rule)}
-.exp-date{font-family:var(--cond);font-weight:500;font-size:18px;color:var(--muted);padding-top:2px}
+.exp-list{border-top-color:var(--rule-strong)}
+.exp-date{font-family:var(--cond);font-weight:600;font-size:18px;color:var(--gold);padding-top:2px}
 .exp-role{font-family:var(--cond);font-weight:600;font-size:24px;line-height:1.2;color:var(--ink)}
 .exp-org{font-size:16px;font-weight:500;color:var(--cyan);margin-bottom:8px}
 .exp-desc{max-width:70ch}
 .exp-desc ul{margin:8px 0 0;padding-left:18px}
 .exp-desc li{margin-bottom:6px}
 .exp-desc li::marker{color:var(--cyan)}
-.exp-result{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;color:var(--green);border:1px solid rgba(95,224,168,0.55);padding:3px 10px}
+.exp-result{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;color:var(--green);border:1px solid rgba(95,224,168,0.6);background:rgba(95,224,168,0.06);padding:3px 10px}
 
 /* PROJECTS */
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.proj-card{border:1px solid var(--rule);background:var(--panel);transition:border-color .15s;display:flex;flex-direction:column}
-.proj-card:hover{border-color:var(--rule-strong)}
-.proj-card.flagship{grid-column:1/-1}
-.proj-header{border-bottom:1px solid var(--rule);padding:9px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(26,58,92,0.22)}
-.proj-id{font-family:var(--cond);font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sec-intro{color:var(--muted);margin:-14px 0 22px}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.proj-card{display:flex;perspective:2000px;cursor:pointer;transition:transform .25s ease}
+.proj-card.flagship{grid-column:1/-1;perspective:3200px}
+.flip{flex:1;display:flex;flex-direction:column;border:1px solid var(--rule);background:var(--panel);transition:border-color .2s,box-shadow .25s;will-change:transform}
+.proj-card.is-flipped .flip{border-color:rgba(240,192,64,0.55)}
+@media (hover:hover){
+  .proj-card:hover{transform:translateY(-6px)}
+  .proj-card:hover .flip{border-color:var(--cyan);box-shadow:0 16px 38px rgba(91,200,245,0.16)}
+  .proj-card.is-flipped:hover .flip{border-color:var(--gold);box-shadow:0 16px 38px rgba(240,192,64,0.14)}
+}
+.face{flex:1;display:flex;flex-direction:column}
+.face[hidden]{display:none}
+.proj-header{border-bottom:1px solid var(--rule);padding:9px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(26,58,92,0.26)}
+.proj-id{font-family:var(--cond);font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .status{font-size:13px;font-weight:600;padding:2px 9px;border:1px solid;white-space:nowrap}
-.s-done{color:var(--green);border-color:rgba(95,224,168,0.55)}
-.s-award{color:var(--gold);border-color:rgba(240,192,64,0.6)}
-.proj-schematic{height:88px;border-bottom:1px solid var(--rule);overflow:hidden;background:rgba(26,58,92,0.18)}
+.s-done{color:var(--green);border-color:rgba(95,224,168,0.6);background:rgba(95,224,168,0.06)}
+.s-award{color:var(--gold);border-color:rgba(240,192,64,0.65);background:rgba(240,192,64,0.07)}
+.proj-schematic{height:88px;border-bottom:1px solid var(--rule);overflow:hidden;background:rgba(26,58,92,0.2)}
 .proj-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
 .proj-title{font-family:var(--cond);font-weight:600;font-size:26px;line-height:1.15;color:var(--ink)}
 .proj-meta{font-size:15px;font-weight:500;color:var(--cyan);margin:2px 0 10px}
 .proj-desc{color:var(--text);margin-bottom:16px;max-width:72ch}
 .proj-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.tag{font-size:13px;font-weight:500;padding:2px 9px;border:1px solid var(--rule);color:var(--muted)}
-.proj-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.tag{font-size:13px;font-weight:500;padding:2px 9px;border:1px solid rgba(61,132,184,0.75);color:var(--cyan);background:rgba(91,200,245,0.05)}
+.proj-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
 .plink{font-size:15px;font-weight:600;color:var(--cyan);text-decoration:none;padding:7px 14px;border:1px solid var(--rule-strong);transition:border-color .15s,color .15s}
-.plink:hover{color:var(--ink);border-color:var(--cyan)}
+.plink:hover{color:var(--gold);border-color:var(--gold)}
+.flip-btn{margin-left:auto;font:600 15px var(--sans);color:var(--bg);background:var(--cyan);border:1px solid var(--cyan);padding:7px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .15s,border-color .15s}
+.flip-btn::before{content:'';width:14px;height:14px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12a9 9 0 0 1 15.5-6.2L21 8'/%3E%3Cpath d='M21 3v5h-5'/%3E%3Cpath d='M21 12a9 9 0 0 1-15.5 6.2L3 16'/%3E%3Cpath d='M3 21v-5h5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12a9 9 0 0 1 15.5-6.2L21 8'/%3E%3Cpath d='M21 3v5h-5'/%3E%3Cpath d='M21 12a9 9 0 0 1-15.5 6.2L3 16'/%3E%3Cpath d='M3 21v-5h5'/%3E%3C/svg%3E") center/contain no-repeat}
+.flip-btn:hover{background:var(--gold);border-color:var(--gold)}
+.back .flip-btn{background:transparent;color:var(--gold);border-color:rgba(240,192,64,0.7)}
+.back .flip-btn:hover{background:var(--gold);color:var(--bg)}
+.back-cols{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;align-items:start;margin-bottom:18px}
+.detail-list{margin:10px 0 16px}
+.back-cols .detail-list{margin-bottom:0}
+.detail-list dt{font-family:var(--cond);font-weight:600;font-size:17px;letter-spacing:.04em;color:var(--gold);margin-top:12px}
+.detail-list dt:first-child{margin-top:0}
+.detail-list dd{color:var(--text);max-width:70ch}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shot{display:block;padding:0;border:1px solid var(--rule);background:#03080d;cursor:zoom-in;aspect-ratio:4/3;overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+.shot:hover{border-color:var(--cyan)}
+.shot:hover img{transform:scale(1.05)}
+#lightbox{margin:auto;border:1px solid var(--rule-strong);background:var(--bg);color:var(--text);padding:16px;max-width:92vw}
+#lightbox::backdrop{background:rgba(4,10,17,0.86)}
+#lightbox figure{margin:0}
+#lightbox img{display:block;width:min(84vw,680px);max-height:74vh;height:auto;object-fit:contain;margin:0 auto;background:#03080d}
+#lightbox figcaption{margin-top:10px;color:var(--muted);max-width:680px}
+.lb-close{margin-top:12px;font:600 15px var(--sans);background:transparent;color:var(--ink);border:1px solid var(--rule-strong);padding:7px 14px;cursor:pointer}
+.lb-close:hover{border-color:var(--gold);color:var(--gold)}
+@media (prefers-reduced-motion:reduce){.proj-card:hover{transform:none}}
 
 /* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);background:var(--panel)}
 .skill-group{padding:20px 22px;border-right:1px solid var(--rule)}
 .skill-group:last-child{border-right:none}
-.skill-group h3{font-family:var(--cond);font-weight:600;font-size:21px;color:var(--ink);margin-bottom:8px}
+.skill-group h3{font-family:var(--cond);font-weight:600;font-size:21px;color:var(--gold);margin-bottom:8px}
 .skill-group ul{list-style:none}
-.skill-group li{padding:4px 0}
+.skill-group li{padding:4px 0 4px 16px;position:relative}
+.skill-group li::before{content:'';position:absolute;left:0;top:17px;width:7px;height:1px;background:var(--cyan)}
 
 /* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
@@ -148,12 +192,12 @@ section{padding:72px 40px;max-width:1120px;margin:0 auto;scroll-margin-top:60px}
 .c-row{display:block;padding:14px 22px;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
 .c-row:last-child{border-bottom:none}
 a.c-row:hover .c-val{color:var(--cyan)}
-.c-lbl{display:block;font-size:14px;font-weight:600;color:var(--muted)}
+.c-lbl{display:block;font-size:14px;font-weight:600;color:var(--gold)}
 .c-val{display:block;font-size:17px;color:var(--ink);transition:color .15s;overflow-wrap:anywhere}
 .c-val .avail{color:var(--green);font-weight:600}
 .form-panel{border:1px solid var(--rule);padding:22px;background:var(--panel)}
 .f-group{margin-bottom:16px}
-.f-lbl{font-size:14px;font-weight:600;color:var(--muted);display:block;margin-bottom:5px}
+.f-lbl{font-size:14px;font-weight:600;color:var(--gold);display:block;margin-bottom:5px}
 .f-input{width:100%;background:rgba(11,24,37,0.85);border:1px solid var(--rule);color:var(--ink);font:400 16px var(--sans);padding:10px 12px;transition:border-color .15s}
 .f-input:focus{border-color:var(--cyan);outline:none}
 textarea.f-input{height:110px;resize:vertical}
@@ -169,10 +213,11 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
 .title-block{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border:1px solid var(--rule-strong)}
 .tb-cell{padding:10px 14px;border-right:1px solid var(--rule)}
 .tb-cell:last-child{border-right:none}
-.tb-lbl{display:block;font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tb-lbl{display:block;font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .tb-val{display:block;font-family:var(--cond);font-weight:600;font-size:17px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
 
 @media(max-width:960px){
+  .back-cols{grid-template-columns:1fr 1fr}
   .about-grid{grid-template-columns:1fr}
   .proj-grid{grid-template-columns:1fr}.proj-card.flagship{grid-column:auto}
   .skills-grid{grid-template-columns:1fr 1fr}
@@ -193,6 +238,8 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
   .badge-item{border-right:none;border-bottom:1px solid var(--rule)}
   .badge-item:last-child{border-bottom:none}
   .exp-item{grid-template-columns:1fr;gap:4px}
+  .back-cols{grid-template-columns:1fr}
+  .flip-btn{margin-left:0}
   .contact-grid{grid-template-columns:1fr}
   .skills-grid{grid-template-columns:1fr}
   .skill-group{border-right:none;border-bottom:1px solid var(--rule)}
@@ -213,6 +260,7 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<div id="scroll-prog"></div>
 
 <nav aria-label="Main">
   <div class="nav-inner">
@@ -350,12 +398,12 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
   </svg>
 
   <div class="hero-content">
-    <h1 class="hero-name">Aaron<br>Kumar</h1>
+    <h1 class="hero-name">Aaron<br><span class="hi">Kumar</span></h1>
     <p class="hero-role">Mechanical Engineering, McMaster University</p>
     <p class="hero-bio">Second-year student on the propulsion sub-team building McMaster's first hybrid rocket engine. I spent summer 2026 on Canam Group's Operational Excellence team, and I've won three international awards for space settlement design.</p>
     <div class="badge-row">
-      <div class="badge-item"><div class="badge-kicker">Industry</div><div class="badge-title">Canam Group</div><div class="badge-sub">Lean Manufacturing Intern<br>May – Aug 2026</div></div>
-      <div class="badge-item"><div class="badge-kicker">Design team</div><div class="badge-title">McMaster Rocketry</div><div class="badge-sub">Propulsion sub-team<br>Sep 2025 – present</div></div>
+      <div class="badge-item b-green"><div class="badge-kicker">Industry</div><div class="badge-title">Canam Group</div><div class="badge-sub">Lean Manufacturing Intern<br>May – Aug 2026</div></div>
+      <div class="badge-item b-blue"><div class="badge-kicker">Design team</div><div class="badge-title">McMaster Rocketry</div><div class="badge-sub">Propulsion sub-team<br>Sep 2025 – present</div></div>
       <div class="badge-item award"><div class="badge-kicker">Awards</div><div class="badge-title">3× NSS international</div><div class="badge-sub">1st place 2024 &amp; 2025<br>Honourable mention 2024</div></div>
     </div>
     <div class="hero-btns">
@@ -369,8 +417,8 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
 <section id="about">
   <h2 class="sec-title">About</h2>
   <div class="stats-bar">
-    <div class="stat"><span class="stat-n">3×</span><span class="stat-l">International design awards (NSS)</span></div>
-    <div class="stat"><span class="stat-n">$22.8K</span><span class="stat-l">Cost savings delivered at Canam Group</span></div>
+    <div class="stat stat-gold"><span class="stat-n">3×</span><span class="stat-l">International design awards (NSS)</span></div>
+    <div class="stat stat-green"><span class="stat-n">$22.8K</span><span class="stat-l">Cost savings delivered at Canam Group</span></div>
     <div class="stat"><span class="stat-n">&lt;1 min</span><span class="stat-l">Frame inspection time, down from 3 weeks</span></div>
     <div class="stat"><span class="stat-n">5</span><span class="stat-l">Engineering projects, concept to prototype</span></div>
   </div>
@@ -418,6 +466,7 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
             <li>Designed and deployed a portable metrology jig that cut a 3-week frame inspection cycle to under one minute (see <a href="#proj-jig">Projects</a>).</li>
           </ul>
         </div>
+        <span class="exp-result">$22,790 in savings delivered</span>
       </div>
     </div>
     <div class="exp-item">
@@ -449,39 +498,116 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
 
 <section id="projects">
   <h2 class="sec-title">Projects</h2>
+  <p class="sec-intro">Click any project to flip it for the full story and photos.</p>
   <div class="proj-grid">
+
     <article class="proj-card flagship" id="proj-jig">
-      <div class="proj-header"><span class="proj-id">Proj-001</span><span class="status s-done">Deployed</span></div>
-      <div class="proj-body">
-        <h3 class="proj-title">Portable Metrology Jig</h3>
-        <p class="proj-meta">Canam Group internship · 2026</p>
-        <p class="proj-desc">A portable inspection fixture that works as a self-contained metrology lab on the shop floor, scanning surface defects and measuring feature-to-feature distances across a full structural frame without moving it. It replaced a 3-week scan-and-transport workflow with an in-place inspection that takes under one minute. I owned the project end to end: concept CAD, prototyping, and on-site validation.</p>
-        <div class="proj-tags"><span class="tag">Mechanical design</span><span class="tag">Metrology</span><span class="tag">Fixture design</span><span class="tag">Prototyping</span><span class="tag">Lean manufacturing</span></div>
+      <div class="flip">
+        <div class="face front">
+          <div class="proj-header"><span class="proj-id">Proj-001</span><span class="status s-done">Deployed</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">Portable Metrology Jig</h3>
+            <p class="proj-meta">Canam Group internship · 2026</p>
+            <p class="proj-desc">A portable inspection fixture that works as a self-contained metrology lab on the shop floor, scanning surface defects and measuring feature-to-feature distances across a full structural frame without moving it. It cut a 3-week inspection cycle to under one minute.</p>
+            <div class="proj-tags"><span class="tag">Mechanical design</span><span class="tag">Metrology</span><span class="tag">Fixture design</span><span class="tag">Prototyping</span><span class="tag">Lean manufacturing</span></div>
+            <div class="proj-foot"><button class="flip-btn" type="button">More details</button></div>
+          </div>
+        </div>
+        <div class="face back" hidden>
+          <div class="proj-header"><span class="proj-id">Proj-001 · Details</span><span class="status s-done">Deployed</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">Portable Metrology Jig</h3>
+            <dl class="detail-list">
+              <dt>The problem</dt>
+              <dd>Checking a structural frame meant scanning it and transporting it for inspection, a cycle that took about three weeks per frame.</dd>
+              <dt>What I built</dt>
+              <dd>A portable fixture that brings the measurement to the frame. It scans for surface defects and measures feature-to-feature distances across the whole frame right where it sits on the shop floor.</dd>
+              <dt>My role</dt>
+              <dd>I owned it end to end: concept CAD, prototyping, and on-site validation.</dd>
+              <dt>Result</dt>
+              <dd>Inspection now happens in place in under one minute instead of three weeks. The same summer on Canam's Operational Excellence team, I also led a $22.8K consumables cost reduction.</dd>
+            </dl>
+            <div class="proj-foot"><button class="flip-btn" type="button">Back to summary</button></div>
+          </div>
+        </div>
       </div>
     </article>
+
     <article class="proj-card">
-      <div class="proj-header"><span class="proj-id">Proj-002</span><span class="status s-done">Complete</span></div>
-      <div class="proj-body">
-        <h3 class="proj-title">Robotic End Effector</h3>
-        <p class="proj-meta">ENG1P13, McMaster · 2025</p>
-        <p class="proj-desc">Gear-driven end effector for a Q-arm robotic system simulating warehouse order fulfillment. As Subject Matter Expert, I designed the initial concept, led all CAD iterations, produced the exploded drawings, and wrote the Python customer_summary() function. I redesigned the final gripper with longer leverage and shorter arms for more torque.</p>
-        <div class="proj-tags"><span class="tag">Autodesk Inventor</span><span class="tag">Python</span><span class="tag">Gear design</span><span class="tag">Robotics</span><span class="tag">3D printing</span></div>
-        <div class="proj-links"><a href="https://loving-orchestra-a90.notion.site/P1-End-Effector-2dd60f3d73ef81b49e65c26e7eda62b2" target="_blank" rel="noopener" class="plink">Read the full report</a></div>
+      <div class="flip">
+        <div class="face front">
+          <div class="proj-header"><span class="proj-id">Proj-002</span><span class="status s-done">Complete</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">Robotic End Effector</h3>
+            <p class="proj-meta">ENG1P13, McMaster · 2025</p>
+            <p class="proj-desc">Gear-driven end effector for a Q-arm robot simulating warehouse order fulfillment. As Subject Matter Expert, I led the concept, every CAD iteration, and the exploded drawings.</p>
+            <div class="proj-tags"><span class="tag">Autodesk Inventor</span><span class="tag">Python</span><span class="tag">Gear design</span><span class="tag">Robotics</span><span class="tag">3D printing</span></div>
+            <div class="proj-foot"><button class="flip-btn" type="button">More details</button></div>
+          </div>
+        </div>
+        <div class="face back" hidden>
+          <div class="proj-header"><span class="proj-id">Proj-002 · Details</span><span class="status s-done">Complete</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">Robotic End Effector</h3>
+            <dl class="detail-list">
+              <dt>The brief</dt>
+              <dd>Design a gripper for a Q-arm robotic system that picks and places items in a simulated warehouse order-fulfillment cell.</dd>
+              <dt>My role</dt>
+              <dd>Subject Matter Expert for the team. I designed the initial concept, led all CAD iterations in Autodesk Inventor, produced the exploded drawings, and wrote the Python customer_summary() function for the order logic.</dd>
+              <dt>Iteration</dt>
+              <dd>For the final version I redesigned the gripper with longer leverage and shorter arms to increase torque output.</dd>
+              <dt>Build</dt>
+              <dd>Gear-driven mechanism, 3D-printed for rapid iteration.</dd>
+            </dl>
+            <div class="proj-foot">
+              <a href="https://loving-orchestra-a90.notion.site/P1-End-Effector-2dd60f3d73ef81b49e65c26e7eda62b2" target="_blank" rel="noopener" class="plink">Read the full report</a>
+              <button class="flip-btn" type="button">Back to summary</button>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
+
     <article class="proj-card">
-      <div class="proj-header"><span class="proj-id">Proj-003</span><span class="status s-done">Complete</span></div>
-      <div class="proj-body">
-        <h3 class="proj-title">Motorized Storage Device</h3>
-        <p class="proj-meta">ENG1P13, McMaster · 2026</p>
-        <p class="proj-desc">Motorized lift for a powerchair user with rheumatoid arthritis: a rack-and-pinion drive with gearbox-amplified DC motors, parallel 9V batteries, and a single-button interface for retrieving items unassisted. I led all CAD iterations and about 80% of the electronics and wiring, using a BambuLab P1S for same-day prototyping.</p>
-        <div class="proj-tags"><span class="tag">Autodesk Inventor</span><span class="tag">3D printing</span><span class="tag">Rack and pinion</span><span class="tag">Embedded systems</span><span class="tag">Assistive tech</span></div>
-        <div class="proj-links"><a href="https://loving-orchestra-a90.notion.site/P3-Motorized-Storage-Device-2dd60f3d73ef811fb88ddfb97546571e?pvs=74" target="_blank" rel="noopener" class="plink">Read the full report</a></div>
+      <div class="flip">
+        <div class="face front">
+          <div class="proj-header"><span class="proj-id">Proj-003</span><span class="status s-done">Complete</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">Motorized Storage Device</h3>
+            <p class="proj-meta">ENG1P13, McMaster · 2026</p>
+            <p class="proj-desc">Arduino-controlled rack-and-pinion lift that lets a powerchair user with rheumatoid arthritis retrieve stored items with one button. I led all CAD and about 80% of the electronics.</p>
+            <div class="proj-tags"><span class="tag">Autodesk Inventor</span><span class="tag">3D printing</span><span class="tag">Rack and pinion</span><span class="tag">Embedded systems</span><span class="tag">Assistive tech</span></div>
+            <div class="proj-foot"><button class="flip-btn" type="button">More details</button></div>
+          </div>
+        </div>
+        <div class="face back" hidden>
+          <div class="proj-header"><span class="proj-id">Proj-003 · Details</span><span class="status s-done">Complete</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">Motorized Storage Device</h3>
+            <dl class="detail-list">
+              <dt>The client</dt>
+              <dd>A powerchair user with rheumatoid arthritis who needed to reach stored items without lifting or gripping.</dd>
+              <dt>The design</dt>
+              <dd>A rack-and-pinion lift driven by gearbox-amplified DC motors, powered by parallel 9V batteries, with a single-button interface so the user can retrieve items without help.</dd>
+              <dt>My role</dt>
+              <dd>Led every CAD iteration in Autodesk Inventor and built about 80% of the electronics and wiring for the Arduino-controlled system.</dd>
+              <dt>Process</dt>
+              <dd>Used a BambuLab P1S 3D printer for same-day rapid prototyping.</dd>
+            </dl>
+            <div class="proj-foot">
+              <a href="https://loving-orchestra-a90.notion.site/P3-Motorized-Storage-Device-2dd60f3d73ef811fb88ddfb97546571e?pvs=74" target="_blank" rel="noopener" class="plink">Read the full report</a>
+              <button class="flip-btn" type="button">Back to summary</button>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
+
     <article class="proj-card flagship">
-      <div class="proj-schematic">
-        <svg aria-hidden="true" width="100%" height="88" viewBox="0 0 900 88" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <div class="flip">
+        <div class="face front">
+          <div class="proj-schematic">
+            <svg aria-hidden="true" width="100%" height="88" viewBox="0 0 900 88" xmlns="http://www.w3.org/2000/svg" fill="none">
           <line x1="0" y1="44" x2="900" y2="44" stroke="#2a5f8a" stroke-width="0.4" stroke-dasharray="8,4"/>
           <ellipse cx="450" cy="44" rx="190" ry="28" stroke="#4a9fd4" stroke-width="1"/>
           <ellipse cx="450" cy="44" rx="125" ry="17" stroke="#4a9fd4" stroke-width="0.5" stroke-dasharray="4,3"/>
@@ -495,27 +621,100 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
           <text x="395" y="80" fill="#3d84b8" font-family="monospace" font-size="7">AGRICULTURE MODULE</text>
           <text x="715" y="80" fill="#3d84b8" font-family="monospace" font-size="7">SOLAR ARRAY &#9655;</text>
         </svg>
-      </div>
-      <div class="proj-header"><span class="proj-id">Proj-004</span><span class="status s-award">1st place, NSS 2025</span></div>
-      <div class="proj-body">
-        <h3 class="proj-title">ASTRAEUS II: Eden Garden Module</h3>
-        <p class="proj-meta">NSS Live in a Healthy Space Design Competition · 2025</p>
-        <p class="proj-desc">An award-winning space agriculture habitat for long-duration human settlement. I led structural design and systems integration of the sustainable agricultural module. Key innovations include a magnetorheological fluid tilling system, an AI-powered pollination vehicle, frequency-optimized plant growth (PAFT), and combined hydroponic, aeroponic, and soil-based farming, reaching near 100% space efficiency and capacity for up to 592,391 inhabitants per settlement.</p>
-        <div class="proj-tags"><span class="tag">Shapr3D</span><span class="tag">Space systems</span><span class="tag">Structural design</span><span class="tag">Systems integration</span><span class="tag">Research</span></div>
-        <div class="proj-links"><a href="mainsub.pdf" target="_blank" rel="noopener" class="plink">Main submission (PDF)</a><a href="eden.pdf" target="_blank" rel="noopener" class="plink">Eden Garden submission (PDF)</a></div>
+          </div>
+          <div class="proj-header"><span class="proj-id">Proj-004</span><span class="status s-award">1st place, NSS 2025</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">ASTRAEUS II: Eden Garden Module</h3>
+            <p class="proj-meta">NSS Live in a Healthy Space Design Competition · 2025</p>
+            <p class="proj-desc">An award-winning space agriculture habitat for long-duration human settlement. I led structural design and systems integration of the module, which combines hydroponic, aeroponic, and soil-based farming at near 100% space efficiency and can feed up to 592,391 people.</p>
+            <div class="proj-tags"><span class="tag">Shapr3D</span><span class="tag">Space systems</span><span class="tag">Structural design</span><span class="tag">Systems integration</span><span class="tag">Research</span></div>
+            <div class="proj-foot"><button class="flip-btn" type="button">More details &amp; photos</button></div>
+          </div>
+        </div>
+        <div class="face back" hidden>
+          <div class="proj-header"><span class="proj-id">Proj-004 · Details</span><span class="status s-award">1st place, NSS 2025</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">ASTRAEUS II: Eden Garden Module</h3>
+            <div class="back-cols">
+              <dl class="detail-list">
+                <dt>The brief</dt>
+                <dd>ASTRAEUS II is a self-sustaining settlement for about 313,000 people on a journey to the exoplanet Trappist-1e. Eden Garden is its agriculture module, designed by our 12-person team.</dd>
+                <dt>Module design</dt>
+                <dd>A bioreactor core turns organic waste into nutrients, ringed by aeroponic, hydroponic, and soil-based growing zones on one closed-loop water network. Modules stack 16 high into 24 m × 54.4 m sectors of 1.66 acres each; 262 of them give the settlement 435 acres of farmland.</dd>
+                <dt>Bladeless tilling</dt>
+                <dd>We made a magnetorheological fluid by synthesizing iron nanoparticles from green tea extract and ferric chloride, then suspending them in oil. Under a magnet it stiffens into spikes, so flexible containers can till soil with no blades or heavy machinery.</dd>
+                <dt>Other systems</dt>
+                <dd>An autonomous pollination vehicle with LIDAR, cameras and an onboard AI processor, plus LED schedules tuned by growth stage: blue light for vegetative growth, red for flowering and fruiting, 14 hours a day.</dd>
+                <dt>My role</dt>
+                <dd>Led structural design and systems integration of the module.</dd>
+              </dl>
+              <div class="gallery">
+                <button class="shot" type="button" data-full="img/astraeus-eden-module.jpg" data-caption="Eden Garden agriculture module render"><img src="img/astraeus-eden-module.jpg" alt="3D render of the Eden Garden agriculture module" width="438" height="328" loading="lazy"></button>
+                <button class="shot" type="button" data-full="img/astraeus-eden-cutaway.jpg" data-caption="Cutaway showing the soil-based, hydroponic and aeroponic zones"><img src="img/astraeus-eden-cutaway.jpg" alt="Labelled cutaway of the module's growing zones" width="390" height="292" loading="lazy"></button>
+                <button class="shot" type="button" data-full="img/astraeus-mr-fluid.jpg" data-caption="Our magnetorheological fluid spiking under a magnet, the basis for bladeless tilling"><img src="img/astraeus-mr-fluid.jpg" alt="Iron-nanoparticle fluid forming spikes above a magnet" width="241" height="321" loading="lazy"></button>
+                <button class="shot" type="button" data-full="img/astraeus-settlement.jpg" data-caption="The full ASTRAEUS II settlement"><img src="img/astraeus-settlement.jpg" alt="Render of the ASTRAEUS II settlement" width="457" height="268" loading="lazy"></button>
+              </div>
+            </div>
+            <div class="proj-foot">
+              <a href="mainsub.pdf" target="_blank" rel="noopener" class="plink">Main submission (PDF)</a>
+              <a href="eden.pdf" target="_blank" rel="noopener" class="plink">Eden Garden submission (PDF)</a>
+              <button class="flip-btn" type="button">Back to summary</button>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
+
     <article class="proj-card flagship">
-      <div class="proj-header"><span class="proj-id">Proj-005</span><span class="status s-done">Complete</span></div>
-      <div class="proj-body">
-        <h3 class="proj-title">HHO Generator &amp; Ion Thruster</h3>
-        <p class="proj-meta">Independent · 2024</p>
-        <p class="proj-desc">Built and tested a working hydrogen-oxygen generator prototype to explore electrolysis and clean-energy applications. Alongside it, I did independent ion thruster and small-scale propulsion design work as hands-on exploration of experimental propulsion concepts.</p>
-        <div class="proj-tags"><span class="tag">Electrolysis</span><span class="tag">Prototyping</span><span class="tag">Clean energy</span><span class="tag">Propulsion</span></div>
+      <div class="flip">
+        <div class="face front">
+          <div class="proj-header"><span class="proj-id">Proj-005</span><span class="status s-done">Complete</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">HHO Generator &amp; Ion Thruster</h3>
+            <p class="proj-meta">Independent · 2024</p>
+            <p class="proj-desc">Built and tested a working hydrogen-oxygen generator to explore electrolysis and clean energy, then built a small ion thruster that uses air as propellant, as a hands-on proof of concept for electric propulsion.</p>
+            <div class="proj-tags"><span class="tag">Electrolysis</span><span class="tag">Prototyping</span><span class="tag">Clean energy</span><span class="tag">Propulsion</span></div>
+            <div class="proj-foot"><button class="flip-btn" type="button">More details &amp; photos</button></div>
+          </div>
+        </div>
+        <div class="face back" hidden>
+          <div class="proj-header"><span class="proj-id">Proj-005 · Details</span><span class="status s-done">Complete</span></div>
+          <div class="proj-body">
+            <h3 class="proj-title">HHO Generator &amp; Ion Thruster</h3>
+            <div class="back-cols">
+              <dl class="detail-list">
+                <dt>HHO generator</dt>
+                <dd>An electrolysis cell that splits water into hydrogen and oxygen using an alkaline electrolyte (KOH or NaOH) to raise conductivity. I explored what drives its efficiency: electrolyte concentration, electrode surface area, operating temperature, and pulsed versus steady DC.</dd>
+                <dt>Ion thruster</dt>
+                <dd>A small-scale thruster using air as propellant: a copper-tube ionization chamber with a steel-brush cathode. A high-voltage DC supply ionizes the air and the electric field accelerates the ions to produce thrust, visible as a blue glow.</dd>
+                <dt>Why it matters</dt>
+                <dd>Both builds fed directly into the propulsion and fuelling sections of the award-winning ASTRAEUS II settlement design.</dd>
+              </dl>
+              <div class="gallery">
+                <button class="shot" type="button" data-full="img/hho-electrolysis.jpg" data-caption="HHO gas forming at the electrodes"><img src="img/hho-electrolysis.jpg" alt="Gas bubbles forming on electrodes in the HHO generator" width="319" height="346" loading="lazy"></button>
+                <button class="shot" type="button" data-full="img/ion-thruster.jpg" data-caption="Ion thruster assembly: copper ionization chamber and steel-brush cathode"><img src="img/ion-thruster.jpg" alt="Copper ion thruster assembly with steel brush cathode" width="356" height="267" loading="lazy"></button>
+                <button class="shot" type="button" data-full="img/ion-thruster-firing.jpg" data-caption="Ion thruster running at over 30,000 volts"><img src="img/ion-thruster-firing.jpg" alt="Ion thruster glowing blue while running" width="494" height="270" loading="lazy"></button>
+              </div>
+            </div>
+            <div class="proj-foot">
+              <a href="mainsub.pdf" target="_blank" rel="noopener" class="plink">Read more in the ASTRAEUS II report (PDF)</a>
+              <button class="flip-btn" type="button">Back to summary</button>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
+
   </div>
 </section>
+
+<dialog id="lightbox" aria-label="Project photo">
+  <figure>
+    <img src="" alt="">
+    <figcaption></figcaption>
+  </figure>
+  <button type="button" class="lb-close">Close</button>
+</dialog>
 
 <section id="skills">
   <h2 class="sec-title">Skills</h2>
@@ -566,7 +765,7 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
   <div class="title-block">
     <div class="tb-cell"><span class="tb-lbl">Title</span><span class="tb-val">Aaron Kumar — Portfolio</span></div>
     <div class="tb-cell"><span class="tb-lbl">Dwg no.</span><span class="tb-val">AK-PORT-001</span></div>
-    <div class="tb-cell"><span class="tb-lbl">Rev</span><span class="tb-val">J</span></div>
+    <div class="tb-cell"><span class="tb-lbl">Rev</span><span class="tb-val">K</span></div>
     <div class="tb-cell"><span class="tb-lbl">Date</span><span class="tb-val">Oct 2026</span></div>
   </div>
 </footer>
@@ -590,6 +789,68 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
     links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
   }
   window.addEventListener('scroll',update,{passive:true});update();
+})();
+
+/* Scroll progress */
+(function(){
+  var bar=document.getElementById('scroll-prog');
+  function upd(){var t=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=(t>0?window.scrollY/t*100:0)+'%';}
+  window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+})();
+
+/* Project cards: click to flip */
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+  function flip(card){
+    if(card.dataset.busy)return;
+    var inner=card.querySelector('.flip'),front=card.querySelector('.face.front'),back=card.querySelector('.face.back');
+    var toBack=back.hidden;
+    var hadFocus=card.contains(document.activeElement)&&document.activeElement.classList.contains('flip-btn');
+    function swap(){
+      front.hidden=toBack;back.hidden=!toBack;
+      card.classList.toggle('is-flipped',toBack);
+      if(hadFocus){var b=(toBack?back:front).querySelector('.flip-btn');if(b)b.focus({preventScroll:true});}
+      var r=card.getBoundingClientRect();
+      if(r.top<70)window.scrollBy({top:r.top-80,behavior:reduce.matches?'auto':'smooth'});
+    }
+    if(reduce.matches){swap();return;}
+    card.dataset.busy='1';
+    inner.style.transition='transform .2s ease-in';
+    inner.style.transform='rotateY(90deg)';
+    setTimeout(function(){
+      swap();
+      inner.style.transition='none';
+      inner.style.transform='rotateY(-90deg)';
+      void inner.offsetWidth;
+      inner.style.transition='transform .24s ease-out';
+      inner.style.transform='rotateY(0deg)';
+      setTimeout(function(){inner.style.transition='';inner.style.transform='';delete card.dataset.busy;},260);
+    },200);
+  }
+  document.querySelectorAll('.proj-card').forEach(function(card){
+    card.addEventListener('click',function(e){
+      if(e.target.closest('a,.shot'))return;
+      var sel=window.getSelection&&window.getSelection().toString();
+      if(sel&&!e.target.closest('.flip-btn'))return;
+      flip(card);
+    });
+  });
+})();
+
+/* Photo viewer */
+(function(){
+  var dlg=document.getElementById('lightbox');
+  if(!dlg||!dlg.showModal)return;
+  var img=dlg.querySelector('img'),cap=dlg.querySelector('figcaption');
+  document.querySelectorAll('.shot').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var t=btn.querySelector('img');
+      img.src=btn.getAttribute('data-full');img.alt=t.alt;cap.textContent=btn.getAttribute('data-caption')||'';
+      dlg.showModal();
+    });
+  });
+  dlg.querySelector('.lb-close').addEventListener('click',function(){dlg.close();});
+  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close();});
 })();
 
 /* Contact form */
