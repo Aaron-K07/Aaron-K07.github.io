@@ -3,282 +3,244 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aaron Kumar — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
+<title>Aaron Kumar — Mechanical Engineering Portfolio</title>
+<meta name="description" content="Aaron Kumar, Mechanical Engineering student at McMaster University. Propulsion on McMaster Rocketry, lean manufacturing at Canam Group, and three international space design awards.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aaronk.info/">
+<meta property="og:title" content="Aaron Kumar — Mechanical Engineering Portfolio">
+<meta property="og:description" content="Mechanical Engineering student at McMaster University. Propulsion, aerospace, and lean manufacturing projects.">
+<meta name="theme-color" content="#0b1825">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b1825'/%3E%3Crect x='4' y='4' width='56' height='56' fill='none' stroke='%235bc8f5' stroke-width='3'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial Narrow,Arial,sans-serif' font-weight='700' font-size='28' fill='%23e8f2fc'%3EAK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0b1825;--blue:#1a3a5c;--line:#2a5f8a;--line-light:#3d84b8;--text:#b8d4ec;--text-bright:#e4f1ff;--accent:#5bc8f5;--gold:#f0c040;--dim:#5a8aaa;--green:#4af0a0}
+:root{
+  --bg:#0b1825;
+  --panel:rgba(26,58,92,0.16);
+  --rule:#234f74;
+  --rule-strong:#3d84b8;
+  --ink:#e8f2fc;
+  --text:#bdd6ec;
+  --muted:#84a7c3;
+  --cyan:#5bc8f5;
+  --gold:#f0c040;
+  --green:#5fe0a8;
+  --sans:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --cond:'Barlow Condensed','Arial Narrow',sans-serif;
+}
 html{scroll-behavior:smooth}
-body{background-color:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(42,95,138,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(42,95,138,0.12) 1px,transparent 1px),linear-gradient(rgba(42,95,138,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(42,95,138,0.04) 1px,transparent 1px);background-size:80px 80px,80px 80px,20px 20px,20px 20px;pointer-events:none;z-index:0}
-
-/* LOADER */
-#loader{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity 0.6s ease}
-#loader.done{opacity:0;pointer-events:none}
-.loader-logo{font-family:'Orbitron',monospace;font-size:22px;color:var(--accent);letter-spacing:6px}
-.loader-logo span{color:var(--gold)}
-.loader-bar-wrap{width:260px;height:2px;background:rgba(42,95,138,0.3)}
-.loader-bar{height:100%;width:0%;background:var(--accent);position:relative;transition:width 0.08s linear}
-.loader-bar::after{content:'';position:absolute;right:-4px;top:-3px;width:8px;height:8px;background:var(--accent);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
-.loader-pct{font-family:'Orbitron',monospace;font-size:11px;color:var(--gold)}
-.loader-status{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px}
-
-/* SCROLL PROGRESS */
-#scroll-prog{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:200}
-
-/* CURSOR GLOW */
-#cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(91,200,245,0.055) 0%,transparent 70%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);top:50%;left:50%}
-
-/* PARTICLE CANVAS */
-#particle-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.4}
-
-/* SCAN LINE */
-#scan-line{position:fixed;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(91,200,245,0.12),transparent);z-index:2;pointer-events:none;animation:scanMove 9s linear infinite}
-@keyframes scanMove{0%{top:-2px}100%{top:100vh}}
-
-/* FLOATING EMOJIS */
-.float-eng{position:fixed;font-size:1.5rem;pointer-events:none;z-index:1;animation:floatDrift 7s ease-in-out infinite;will-change:transform}
-@keyframes floatDrift{0%,100%{transform:translateY(0) rotate(0deg);opacity:0.18}50%{transform:translateY(-20px) rotate(7deg);opacity:0.28}}
-
-/* CORNERS */
-.corner{position:fixed;width:34px;height:34px;border-color:var(--line-light);border-style:solid;z-index:10;opacity:0.45;transition:opacity 0.3s}
-.corner.tl{top:12px;left:12px;border-width:2px 0 0 2px}.corner.tr{top:12px;right:12px;border-width:2px 2px 0 0}
-.corner.bl{bottom:12px;left:12px;border-width:0 0 2px 2px}.corner.br{bottom:12px;right:12px;border-width:0 2px 2px 0}
-.dwg-stamp{position:fixed;bottom:12px;left:12px;border:1px solid var(--line);padding:5px 10px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);line-height:1.9;z-index:10;background:rgba(11,24,37,0.88);transition:opacity 0.3s}
-.dwg-stamp span{color:var(--accent)}
-.rev{position:fixed;bottom:12px;right:12px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);text-align:right;z-index:10;transition:opacity 0.3s}
-.stamp-hidden{opacity:0!important;pointer-events:none}
-.c-link-btn{display:block;width:100%;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent);text-decoration:none;padding:9px 0;border-bottom:1px solid rgba(42,95,138,0.2);letter-spacing:1px;transition:color .2s}
-.c-link-btn:hover{color:var(--gold)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(42,95,138,0.10) 1px,transparent 1px),linear-gradient(90deg,rgba(42,95,138,0.10) 1px,transparent 1px);background-size:80px 80px;pointer-events:none;z-index:0}
+a{color:var(--cyan)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--cyan);color:var(--bg);padding:8px 14px;z-index:300;font-weight:600;text-decoration:none}
+.skip:focus{left:8px}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,24,37,0.94);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;backdrop-filter:blur(10px);gap:12px}
-.nav-logo{font-family:'Orbitron',monospace;font-size:13px;color:var(--accent);letter-spacing:3px;white-space:nowrap;flex-shrink:0}
-.nav-logo span{color:var(--gold)}
-.nav-links{display:flex;gap:0;list-style:none;flex-wrap:nowrap;overflow:hidden}
-.nav-links a{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color .2s;padding:0 8px;white-space:nowrap}
-.nav-links a::before{content:'[ '}.nav-links a::after{content:' ]'}
-.nav-links a:hover,.nav-links a.active{color:var(--accent)}
-.nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;padding:4px 10px;cursor:pointer;flex-shrink:0}
-.nav-drawer{display:none;position:fixed;top:52px;left:0;right:0;background:rgba(11,24,37,0.98);border-bottom:1px solid var(--line);z-index:99;flex-direction:column;padding:12px 24px}
-.nav-drawer a{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--dim);text-decoration:none;padding:10px 0;border-bottom:1px solid rgba(42,95,138,0.2);letter-spacing:2px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,24,37,0.94);border-bottom:1px solid var(--rule);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav-inner{max-width:1120px;margin:0 auto;height:60px;padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-family:var(--cond);font-weight:700;font-size:21px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{font-size:15px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a.nav-cta{color:var(--bg);background:var(--cyan);padding:7px 14px;font-weight:600}
+.nav-links a.nav-cta:hover{background:var(--ink);color:var(--bg)}
+.nav-toggle{display:none;background:none;border:1px solid var(--rule-strong);color:var(--ink);font:500 15px var(--sans);padding:6px 12px;cursor:pointer}
+.nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(11,24,37,0.98);border-bottom:1px solid var(--rule);z-index:99;flex-direction:column;padding:8px 20px 14px}
+.nav-drawer a{font-size:17px;color:var(--text);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(35,79,116,0.5)}
 .nav-drawer a:last-child{border-bottom:none}
-.nav-drawer a:hover{color:var(--accent)}
 .nav-drawer.open{display:flex}
-@media(max-width:640px){.nav-links{display:none}.nav-toggle{display:block}}
+@media(max-width:820px){.nav-links{display:none}.nav-toggle{display:block}.nav-inner{padding:0 20px}}
 
-main{position:relative;z-index:1;padding-top:52px}
-section{padding:52px 56px;max-width:1080px;margin:0 auto}
-.sec-label{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:5px;display:flex;align-items:center;gap:10px}
-.sec-label::after{content:'';display:block;flex:1;height:1px;background:linear-gradient(90deg,var(--line-light),transparent)}
-.sec-title{font-family:'Orbitron',monospace;font-size:24px;color:var(--text-bright);font-weight:700;margin-bottom:28px}
+main{position:relative;z-index:1;padding-top:60px}
+section{padding:72px 40px;max-width:1120px;margin:0 auto;scroll-margin-top:60px}
+.sec-title{font-family:var(--cond);font-weight:600;font-size:38px;line-height:1.1;color:var(--ink);margin-bottom:28px;display:flex;align-items:center;gap:18px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--rule)}
 
 /* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;padding:88px 56px 48px;position:relative;overflow:hidden}
-.hero-content{max-width:600px;position:relative;z-index:2}
-.hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:4px;margin-bottom:12px;min-height:1.5em}
-.tw-cursor{display:inline-block;width:8px;height:1em;background:var(--gold);animation:blink 0.8s step-end infinite;vertical-align:text-bottom;margin-left:2px}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+#hero{min-height:calc(100vh - 60px);display:flex;align-items:center;padding-top:56px;padding-bottom:56px;position:relative}
+.hero-content{max-width:640px;position:relative;z-index:2}
+.hero-name{font-family:var(--cond);font-weight:700;font-size:clamp(64px,10vw,116px);line-height:.9;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);margin-bottom:18px}
+.hero-role{font-family:var(--cond);font-weight:500;font-size:24px;line-height:1.3;color:var(--cyan);margin-bottom:18px}
+.hero-bio{font-size:18px;color:var(--text);max-width:58ch;margin-bottom:28px}
+.hero-rocket{position:absolute;right:40px;top:50%;transform:translateY(-50%);width:300px;opacity:.85;pointer-events:none;display:none}
+@media(min-width:1040px){.hero-rocket{display:block}}
 
-/* GLITCH */
-.hero-name{font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,8vw,96px);font-weight:700;color:var(--text-bright);line-height:0.95;margin-bottom:8px;letter-spacing:2px;text-transform:uppercase;position:relative}
-.hero-name .hi{color:var(--accent)}
-@keyframes glitchAnim{
-  0%{clip-path:inset(0 0 85% 0);transform:translate(-3px,0)}
-  20%{clip-path:inset(25% 0 55% 0);transform:translate(3px,0);color:var(--accent)}
-  40%{clip-path:inset(55% 0 25% 0);transform:translate(-2px,0);color:var(--gold)}
-  60%{clip-path:inset(75% 0 5% 0);transform:translate(2px,0)}
-  80%{clip-path:inset(10% 0 70% 0);transform:translate(-1px,0)}
-  100%{clip-path:inset(0 0 0 0);transform:translate(0,0);color:var(--text-bright)}
-}
-.hero-name.glitch{animation:glitchAnim 0.28s steps(2) forwards}
-.hero-role{font-family:'Rajdhani',sans-serif;font-size:17px;color:var(--accent);font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px}
-.hero-bio{font-size:15px;color:var(--dim);line-height:1.7;max-width:500px;margin-bottom:14px;border-left:2px solid var(--line-light);padding-left:14px}
-.hero-rocket{position:absolute;right:32px;top:50%;transform:translateY(-50%);width:280px;opacity:0.70;pointer-events:none;display:none;will-change:transform;transition:transform 0.12s ease-out}
-@media(min-width:1000px){.hero-rocket{display:block}}
-
-.badge-row{display:flex;gap:0;margin:0 0 24px;border:1px solid var(--line);overflow:hidden}
-.badge-item{flex:1;padding:12px 14px;border-right:1px solid var(--line)}
+.badge-row{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);background:var(--panel);margin-bottom:28px}
+.badge-item{padding:14px 16px;border-right:1px solid var(--rule)}
 .badge-item:last-child{border-right:none}
-.badge-icon{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;margin-bottom:4px}
-.badge-icon.green{color:var(--green)}.badge-icon.blue{color:var(--accent)}.badge-icon.gold{color:var(--gold)}
-.badge-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:1px}
-.badge-sub{font-family:'Share Tech Mono',monospace;font-size:10px;line-height:1.5}
-.badge-sub.green{color:var(--green)}.badge-sub.blue{color:var(--accent)}.badge-sub.gold{color:var(--gold)}
-.badge-item.b-green{background:rgba(74,240,160,0.04)}.badge-item.b-blue{background:rgba(91,200,245,0.04)}.badge-item.b-gold{background:rgba(240,192,64,0.04)}
+.badge-kicker{font-size:13px;font-weight:500;color:var(--muted);margin-bottom:2px}
+.badge-title{font-family:var(--cond);font-weight:600;font-size:21px;line-height:1.15;color:var(--ink);margin-bottom:4px}
+.badge-item.award .badge-title{color:var(--gold)}
+.badge-sub{font-size:14px;line-height:1.5;color:var(--muted)}
+
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-family:var(--sans);font-size:16px;font-weight:600;padding:11px 22px;text-decoration:none;cursor:pointer;border:1px solid transparent;display:inline-block;transition:background .15s,border-color .15s,color .15s}
+.btn-p{background:var(--cyan);color:var(--bg)}
+.btn-p:hover{background:var(--ink)}
+.btn-o{background:transparent;color:var(--ink);border-color:var(--rule-strong)}
+.btn-o:hover{border-color:var(--cyan);color:var(--cyan)}
 
-/* BUTTONS */
-.btn{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;padding:10px 20px;text-decoration:none;text-transform:uppercase;transition:all .2s;cursor:pointer;border:none;display:inline-block;position:relative;overflow:hidden}
-.btn-p{background:var(--accent);color:var(--bg);clip-path:polygon(7px 0%,100% 0%,calc(100% - 7px) 100%,0% 100%)}
-.btn-p:hover{background:var(--gold)}
-.btn-o{background:transparent;color:var(--accent);border:1px solid var(--line-light)}
-.btn-o:hover{background:rgba(91,200,245,0.07);border-color:var(--accent)}
-.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.22);transform:scale(0);animation:rippleA 0.55s linear;pointer-events:none}
-@keyframes rippleA{to{transform:scale(4);opacity:0}}
-
-.stats-bar{display:flex;border:1px solid var(--line);margin-bottom:24px;overflow:hidden}
-.stat{flex:1;padding:14px 10px;border-right:1px solid var(--line);text-align:center}
+/* ABOUT */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);background:var(--panel);margin-bottom:24px}
+.stat{padding:18px 18px 16px;border-right:1px solid var(--rule)}
 .stat:last-child{border-right:none}
-.stat-n{font-family:'Orbitron',monospace;font-size:26px;font-weight:700;color:var(--accent);display:block}
-.stat-l{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;text-transform:uppercase}
-.specs-outer{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
-.specs-left{display:flex;flex-direction:column;gap:20px}
-.spec-box{border:1px solid var(--line);padding:18px;background:rgba(26,58,92,0.12);position:relative}
-.spec-box::before{content:attr(data-id);position:absolute;top:-9px;left:12px;font-family:'Share Tech Mono',monospace;font-size:9px;background:var(--bg);padding:0 7px;color:var(--gold)}
-.spec-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
-.spec-val{font-size:16px;font-weight:600;color:var(--text-bright);margin-bottom:12px}
+.stat-n{font-family:var(--cond);font-weight:700;font-size:40px;line-height:1;color:var(--cyan);display:block;margin-bottom:6px}
+.stat-l{font-size:14px;line-height:1.4;color:var(--muted);display:block}
+.about-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:start}
+.spec-box{border:1px solid var(--rule);padding:22px 24px;background:var(--panel)}
+.spec-box h3{font-family:var(--cond);font-weight:600;font-size:22px;color:var(--ink);margin-bottom:10px}
+.spec-box p{margin-bottom:14px;max-width:62ch}
+.spec-lbl{font-size:14px;font-weight:600;color:var(--muted);margin:14px 0 4px}
 .spec-list{list-style:none}
-.spec-list li{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text);padding:4px 0;border-bottom:1px solid rgba(42,95,138,0.2);display:flex;align-items:center;gap:7px}
-.spec-list li::before{content:'▸';color:var(--accent);font-size:9px}
-.airplane-panel{border:1px solid var(--line);background:rgba(26,58,92,0.1);overflow:hidden}
-.airplane-panel-header{padding:8px 14px;border-bottom:1px solid var(--line);font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;background:rgba(26,58,92,0.2)}
-.airplane-panel-body{padding:14px;display:flex;flex-direction:column;gap:0}
-.tool-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(42,95,138,0.15)}
-.tool-row:last-child{border-bottom:none}
-.tool-dot{width:8px;height:8px;border:1px solid var(--accent);flex-shrink:0;position:relative}
-.tool-dot::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:4px;height:4px;background:var(--accent)}
-.tool-name{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-bright);flex:1}
-.tool-tag{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px}
-.tool-bar-wrap{width:60px;height:3px;background:rgba(42,95,138,0.3)}
-.tool-bar{height:100%;background:var(--accent)}
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.proj-card{border:1px solid var(--line);background:rgba(26,58,92,0.12);overflow:hidden;transition:border-color .2s,box-shadow .3s,transform .35s,opacity .45s;opacity:0;transform:translateY(30px)}
-.proj-card.visible{opacity:1;transform:translateY(0)}
-.proj-card:hover{border-color:var(--accent);transform:translateY(-4px)!important;box-shadow:0 10px 32px rgba(91,200,245,0.11)}
+.spec-list li{padding:7px 0 7px 18px;border-bottom:1px solid rgba(35,79,116,0.55);position:relative}
+.spec-list li:last-child{border-bottom:none}
+.spec-list li::before{content:'';position:absolute;left:0;top:21px;width:8px;height:1px;background:var(--cyan)}
+.spec-list .sub{display:block;font-size:14px;color:var(--muted)}
+
+/* EXPERIENCE */
+.exp-list{border-top:1px solid var(--rule)}
+.exp-item{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--rule)}
+.exp-date{font-family:var(--cond);font-weight:500;font-size:18px;color:var(--muted);padding-top:2px}
+.exp-role{font-family:var(--cond);font-weight:600;font-size:24px;line-height:1.2;color:var(--ink)}
+.exp-org{font-size:16px;font-weight:500;color:var(--cyan);margin-bottom:8px}
+.exp-desc{max-width:70ch}
+.exp-desc ul{margin:8px 0 0;padding-left:18px}
+.exp-desc li{margin-bottom:6px}
+.exp-desc li::marker{color:var(--cyan)}
+.exp-result{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;color:var(--green);border:1px solid rgba(95,224,168,0.55);padding:3px 10px}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.proj-card{border:1px solid var(--rule);background:var(--panel);transition:border-color .15s;display:flex;flex-direction:column}
+.proj-card:hover{border-color:var(--rule-strong)}
 .proj-card.flagship{grid-column:1/-1}
-.proj-header{background:rgba(26,58,92,0.3);border-bottom:1px solid var(--line);padding:9px 16px;display:flex;align-items:center;justify-content:space-between}
-.proj-id{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px}
-.status{font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 8px;border:1px solid}
-.s-done{color:var(--green);border-color:var(--green)}.s-award{color:var(--gold);border-color:var(--gold)}
-.proj-schematic{height:88px;background:rgba(26,58,92,0.2);border-bottom:1px solid var(--line);overflow:hidden}
-.proj-body{padding:18px}
-.proj-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:var(--text-bright);margin-bottom:6px}
-.proj-desc{font-size:13px;color:var(--dim);margin-bottom:12px;line-height:1.6}
-.proj-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.tag{font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 8px;border:1px solid var(--line-light);color:var(--accent);letter-spacing:1px}
-.proj-links{display:flex;gap:10px;flex-wrap:wrap}
-.plink{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:1px;padding:7px 14px;border:1px solid var(--line-light);display:inline-block;transition:all .2s}
-.plink:hover{color:var(--gold);border-color:var(--gold);background:rgba(240,192,64,0.05)}.plink::before{content:'→ '}
-.skills-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-.skill-group{border:1px solid var(--line);padding:16px;background:rgba(26,58,92,0.08)}
-.skill-extra{margin-top:18px;border:1px solid var(--line);padding:14px 16px 2px;background:rgba(26,58,92,0.08)}.skill-extra .sg-title{display:block}
-.sg-title{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
-.sb-row{margin-bottom:10px}
-.sb-name{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text);margin-bottom:3px;display:flex;justify-content:space-between}
-.sb-pct{color:var(--dim);font-size:10px}
-.sb-track{height:3px;background:rgba(42,95,138,0.3)}
-.sb-fill{height:100%;background:var(--accent);width:0%;transition:width 1.3s cubic-bezier(0.22,1,0.36,1);position:relative}
-.sb-fill::after{content:'';position:absolute;right:-3px;top:-3px;width:7px;height:7px;background:var(--accent);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
-.exp-list{display:flex;flex-direction:column}
-.exp-item{border:1px solid var(--line);border-bottom:none;padding:18px 22px;background:rgba(26,58,92,0.08);display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;opacity:0;transform:translateX(-28px);transition:opacity 0.5s ease,transform 0.5s ease}
-.exp-item.visible{opacity:1;transform:translateX(0)}
-.exp-item:last-child{border-bottom:1px solid var(--line)}
-.exp-role{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:var(--text-bright);margin-bottom:2px}
-.exp-org{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:6px}
-.exp-desc{font-size:13px;color:var(--dim);line-height:1.6}
-.exp-date{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);text-align:right;white-space:nowrap;padding-top:2px}
-.exp-desc ul{margin:6px 0 0;padding-left:16px}.exp-desc li{margin-bottom:3px}.exp-desc a{color:var(--accent)}
-.exp-badge{font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 7px;border:1px solid var(--green);color:var(--green);margin-top:5px;display:inline-block}
+.proj-header{border-bottom:1px solid var(--rule);padding:9px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(26,58,92,0.22)}
+.proj-id{font-family:var(--cond);font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.status{font-size:13px;font-weight:600;padding:2px 9px;border:1px solid;white-space:nowrap}
+.s-done{color:var(--green);border-color:rgba(95,224,168,0.55)}
+.s-award{color:var(--gold);border-color:rgba(240,192,64,0.6)}
+.proj-schematic{height:88px;border-bottom:1px solid var(--rule);overflow:hidden;background:rgba(26,58,92,0.18)}
+.proj-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.proj-title{font-family:var(--cond);font-weight:600;font-size:26px;line-height:1.15;color:var(--ink)}
+.proj-meta{font-size:15px;font-weight:500;color:var(--cyan);margin:2px 0 10px}
+.proj-desc{color:var(--text);margin-bottom:16px;max-width:72ch}
+.proj-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tag{font-size:13px;font-weight:500;padding:2px 9px;border:1px solid var(--rule);color:var(--muted)}
+.proj-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.plink{font-size:15px;font-weight:600;color:var(--cyan);text-decoration:none;padding:7px 14px;border:1px solid var(--rule-strong);transition:border-color .15s,color .15s}
+.plink:hover{color:var(--ink);border-color:var(--cyan)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);background:var(--panel)}
+.skill-group{padding:20px 22px;border-right:1px solid var(--rule)}
+.skill-group:last-child{border-right:none}
+.skill-group h3{font-family:var(--cond);font-weight:600;font-size:21px;color:var(--ink);margin-bottom:8px}
+.skill-group ul{list-style:none}
+.skill-group li{padding:4px 0}
+
+/* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
-.contact-panel{border:1px solid var(--line);padding:20px;background:rgba(26,58,92,0.08)}
-.c-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(42,95,138,0.2)}
+.contact-panel{border:1px solid var(--rule);background:var(--panel)}
+.c-row{display:block;padding:14px 22px;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
 .c-row:last-child{border-bottom:none}
-.c-icon{width:24px;height:24px;border:1px solid var(--line-light);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--accent);flex-shrink:0}
-.c-lbl{color:var(--dim);font-size:9px;letter-spacing:1px;font-family:'Share Tech Mono',monospace}
-.c-val{color:var(--text-bright);font-size:12px;font-family:'Share Tech Mono',monospace}
-.status-panel{border:1px solid var(--line);padding:14px;background:rgba(26,58,92,0.08);margin-top:12px}
-.status-panel p{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);line-height:2}
-.status-panel span{color:var(--green)}
-.form-panel{border:1px solid var(--line);padding:20px;background:rgba(26,58,92,0.08)}
-.f-group{margin-bottom:14px}
-.f-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;display:block;margin-bottom:4px}
-.f-input{width:100%;background:rgba(11,24,37,0.8);border:1px solid var(--line);color:var(--text-bright);font-family:'Share Tech Mono',monospace;font-size:12px;padding:8px 11px;outline:none;transition:border-color .2s}
-.f-input:focus{border-color:var(--accent)}
-textarea.f-input{height:80px;resize:vertical}
-.f-error{font-family:'Share Tech Mono',monospace;font-size:10px;color:#f05050;margin-top:4px;display:block}
-.f-success{border:1px solid var(--green);padding:20px;text-align:center;background:rgba(74,240,160,0.05)}
-.f-success-icon{font-size:28px;margin-bottom:8px}
-.f-success-title{font-family:'Orbitron',monospace;font-size:14px;color:var(--green);margin-bottom:6px}
-.f-success-msg{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
-button[type=submit]:disabled{opacity:0.5;cursor:not-allowed}
-footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-items:center;justify-content:space-between;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);position:relative;z-index:1}
-.divider{display:flex;align-items:center;gap:10px;margin:48px 0 0;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--line)}
+a.c-row:hover .c-val{color:var(--cyan)}
+.c-lbl{display:block;font-size:14px;font-weight:600;color:var(--muted)}
+.c-val{display:block;font-size:17px;color:var(--ink);transition:color .15s;overflow-wrap:anywhere}
+.c-val .avail{color:var(--green);font-weight:600}
+.form-panel{border:1px solid var(--rule);padding:22px;background:var(--panel)}
+.f-group{margin-bottom:16px}
+.f-lbl{font-size:14px;font-weight:600;color:var(--muted);display:block;margin-bottom:5px}
+.f-input{width:100%;background:rgba(11,24,37,0.85);border:1px solid var(--rule);color:var(--ink);font:400 16px var(--sans);padding:10px 12px;transition:border-color .15s}
+.f-input:focus{border-color:var(--cyan);outline:none}
+textarea.f-input{height:110px;resize:vertical}
+.f-error{font-size:14px;color:#ff7a7a;margin-top:4px;display:block}
+.f-success{border:1px solid rgba(95,224,168,0.55);padding:24px;text-align:center}
+.f-success-title{font-family:var(--cond);font-weight:600;font-size:24px;color:var(--green);margin-bottom:4px}
+.f-success-msg{color:var(--text)}
+button[type=submit]{width:100%}
+button[type=submit]:disabled{opacity:.55;cursor:not-allowed}
 
-/* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
+/* FOOTER: drawing title block */
+footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;padding:0 40px}
+.title-block{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border:1px solid var(--rule-strong)}
+.tb-cell{padding:10px 14px;border-right:1px solid var(--rule)}
+.tb-cell:last-child{border-right:none}
+.tb-lbl{display:block;font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tb-val{display:block;font-family:var(--cond);font-weight:600;font-size:17px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
 
-@media(max-width:900px){.specs-outer{grid-template-columns:1fr}.proj-grid{grid-template-columns:1fr}.proj-card.flagship{grid-column:auto}.skills-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){
-  section{padding:40px 18px}#hero{padding:80px 18px 40px}
-  .badge-row{flex-direction:column}.badge-item{border-right:none;border-bottom:1px solid var(--line)}.badge-item:last-child{border-bottom:none}
-  .contact-grid{grid-template-columns:1fr}.skills-grid{grid-template-columns:1fr}
-  footer{padding:16px 18px;flex-direction:column;gap:6px;text-align:center}
-  .dwg-stamp,.rev,.corner{display:none}.exp-item{grid-template-columns:1fr}.exp-date{text-align:left}
-  #cursor-glow{display:none}.float-eng{display:none}
+@media(max-width:960px){
+  .about-grid{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr}.proj-card.flagship{grid-column:auto}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .skill-group:nth-child(2){border-right:none}
+  .skill-group:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .stats-bar{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:none}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--rule)}
 }
-@media(max-width:400px){.stats-bar{flex-wrap:wrap}.stat{min-width:50%;border-bottom:1px solid var(--line)}.hero-name{font-size:52px}}
+@media(max-width:680px){
+  section{padding:52px 20px}
+  #hero{min-height:auto;padding-top:48px;padding-bottom:40px}
+  .hero-bio{font-size:17px}
+  .hero-content{display:flex;flex-direction:column}
+  .hero-btns{order:3;margin-bottom:28px}
+  .badge-row{order:4;margin-bottom:0}
+  .badge-row{grid-template-columns:1fr}
+  .badge-item{border-right:none;border-bottom:1px solid var(--rule)}
+  .badge-item:last-child{border-bottom:none}
+  .exp-item{grid-template-columns:1fr;gap:4px}
+  .contact-grid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .skill-group{border-right:none;border-bottom:1px solid var(--rule)}
+  .skill-group:last-child{border-bottom:none}
+  .sec-title{font-size:32px}
+  footer{padding:0 20px}
+  .title-block{grid-template-columns:1fr 1fr}
+  .tb-cell:nth-child(1){grid-column:1/-1;border-right:none;border-bottom:1px solid var(--rule)}
+  .tb-cell:nth-child(2){border-bottom:1px solid var(--rule)}
+  .tb-cell:nth-child(3){border-right:none;border-bottom:1px solid var(--rule)}
+  .tb-cell:nth-child(4){grid-column:1/-1}
+}
+@media(max-width:400px){
+  .stat-n{font-size:34px}
+  .hero-btns .btn{flex:1 1 auto;text-align:center}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-logo">AARON<span>.</span>K</div>
-  <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:260px">
-    <div class="loader-bar-wrap"><div class="loader-bar" id="loader-bar"></div></div>
-    <div style="display:flex;justify-content:space-between;width:100%">
-      <div class="loader-status" id="loader-status">INITIALIZING...</div>
-      <div class="loader-pct" id="loader-pct">0%</div>
-    </div>
+<nav aria-label="Main">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">Aaron Kumar</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="nav-cta" href="resume.pdf" target="_blank" rel="noopener">Résumé</a></li>
+    </ul>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-drawer">Menu</button>
   </div>
-</div>
-
-<div id="scroll-prog"></div>
-<div id="cursor-glow"></div>
-<canvas id="particle-canvas"></canvas>
-<div id="scan-line"></div>
-
-<!-- FLOATING EMOJIS -->
-<div class="float-eng" style="left:6%;top:22%;animation-delay:0s;animation-duration:6s">🚀</div>
-<div class="float-eng" style="left:91%;top:18%;animation-delay:1.5s;animation-duration:7s">⚙️</div>
-<div class="float-eng" style="left:3%;top:60%;animation-delay:3s;animation-duration:8s">🛸</div>
-<div class="float-eng" style="left:93%;top:55%;animation-delay:0.8s;animation-duration:6.5s">⭐</div>
-<div class="float-eng" style="left:88%;top:80%;animation-delay:2s;animation-duration:7.5s">🌙</div>
-<div class="float-eng" style="left:50%;top:87%;animation-delay:4s;animation-duration:9s">💫</div>
-<div class="float-eng" style="left:12%;top:85%;animation-delay:2.5s;animation-duration:8s">🛰️</div>
-<div class="float-eng" style="left:75%;top:30%;animation-delay:1s;animation-duration:7s">🔬</div>
-
-<div class="corner tl"></div><div class="corner tr"></div>
-<div class="corner bl"></div><div class="corner br"></div>
-<div class="dwg-stamp">DWG NO. <span>AK-PORT-001</span><br>TITLE: <span>AARON KUMAR — PORTFOLIO</span><br>SCALE: 1:1 &nbsp; REV: I &nbsp; DATE: 2026</div>
-<div class="rev">McMaster University · Mechanical Engineering<br>PROPRIETARY — DO NOT REPRODUCE</div>
-
-<nav>
-  <div class="nav-logo">AARON<span>.</span>K</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="nav-toggle" onclick="document.querySelector('.nav-drawer').classList.toggle('open')">MENU</button>
 </nav>
-<div class="nav-drawer">
-  <a href="#about" onclick="document.querySelector('.nav-drawer').classList.remove('open')">[ About ]</a>
-  <a href="#projects" onclick="document.querySelector('.nav-drawer').classList.remove('open')">[ Projects ]</a>
-  <a href="#experience" onclick="document.querySelector('.nav-drawer').classList.remove('open')">[ Experience ]</a>
-  <a href="#skills" onclick="document.querySelector('.nav-drawer').classList.remove('open')">[ Skills ]</a>
-  <a href="#contact" onclick="document.querySelector('.nav-drawer').classList.remove('open')">[ Contact ]</a>
+<div class="nav-drawer" id="nav-drawer">
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+  <a href="resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
 </div>
 
-<main>
+<main id="main">
 <section id="hero">
-  <svg class="hero-rocket" id="hero-rocket" viewBox="0 0 680 900" xmlns="http://www.w3.org/2000/svg" fill="none">
-    <rect width="680" height="900" fill="#0b1825"/>
+  <svg class="hero-rocket" aria-hidden="true" viewBox="0 0 680 900" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <rect width="680" height="900" fill="none"/>
     <line x1="340" y1="0" x2="340" y2="900" stroke="#12293f" stroke-width="0.5" stroke-dasharray="6,5"/>
     <line x1="0" y1="450" x2="680" y2="450" stroke="#12293f" stroke-width="0.5" stroke-dasharray="6,5"/>
     <line x1="170" y1="0" x2="170" y2="900" stroke="#0f2035" stroke-width="0.4" stroke-dasharray="3,8"/>
@@ -379,142 +341,147 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
     <line x1="248" y1="510" x2="596" y2="510" stroke="#2a5f8a" stroke-width="0.5" stroke-dasharray="4,4"/>
     <rect x="0" y="858" width="680" height="42" stroke="#2a5f8a" stroke-width="0.7" fill="rgba(26,58,92,0.4)"/>
     <line x1="0" y1="870" x2="680" y2="870" stroke="#2a5f8a" stroke-width="0.4"/><line x1="340" y1="858" x2="340" y2="900" stroke="#2a5f8a" stroke-width="0.4"/><line x1="510" y1="858" x2="510" y2="900" stroke="#2a5f8a" stroke-width="0.4"/>
-    <text x="12" y="866" fill="#5bc8f5" font-family="monospace" font-size="9" font-weight="bold">DWG: HYBRID-ENGINE-001</text>
-    <text x="12" y="890" fill="#3d84b8" font-family="monospace" font-size="9">McMaster Rocketry · Propulsion</text>
-    <text x="352" y="866" fill="#f0c040" font-family="monospace" font-size="9">LOX / KEROSENE · GG CYCLE</text>
-    <text x="352" y="890" fill="#3d84b8" font-family="monospace" font-size="9">ISP: ~311s VAC</text>
-    <text x="520" y="866" fill="#f0c040" font-family="monospace" font-size="9">SCALE: 1:8</text>
+    <text x="12" y="866" fill="#5bc8f5" font-family="monospace" font-size="9" font-weight="bold">DWG: AK-ILLUS-001</text>
+    <text x="12" y="890" fill="#3d84b8" font-family="monospace" font-size="9">ROCKET ENGINE — ILLUSTRATIVE</text>
+    <text x="352" y="866" fill="#f0c040" font-family="monospace" font-size="9">DRAWN: A. KUMAR</text>
+    <text x="352" y="890" fill="#3d84b8" font-family="monospace" font-size="9">SHEET 1 OF 1</text>
+    <text x="520" y="866" fill="#f0c040" font-family="monospace" font-size="9">SCALE: NTS</text>
     <text x="520" y="890" fill="#3d84b8" font-family="monospace" font-size="9">SECTION A-A</text>
   </svg>
 
   <div class="hero-content">
-    <p class="hero-eyebrow" id="hero-eyebrow"></p>
-    <h1 class="hero-name" id="hero-name">Aaron<br><span class="hi">Kumar</span></h1>
-    <p class="hero-role">Mechanical Engineering Student · Propulsion · Aerospace</p>
-    <p class="hero-bio">Second-year Mechanical Engineering student at McMaster University. Member of the McMaster Rocketry Team — working on McMaster's first hybrid rocket engine. 3× international award winner in space systems design. Completed a Lean Manufacturing internship with Canam Group's Operational Excellence team.</p>
+    <h1 class="hero-name">Aaron<br>Kumar</h1>
+    <p class="hero-role">Mechanical Engineering, McMaster University</p>
+    <p class="hero-bio">Second-year student on the propulsion sub-team building McMaster's first hybrid rocket engine. I spent summer 2026 on Canam Group's Operational Excellence team, and I've won three international awards for space settlement design.</p>
     <div class="badge-row">
-      <div class="badge-item b-green"><div class="badge-icon green">◈ INDUSTRY</div><div class="badge-title" style="color:var(--green)">Canam Group</div><div class="badge-sub green">Lean Manufacturing Intern<br>May – Aug 2026<br>$22.8K in Savings</div></div>
-      <div class="badge-item b-blue"><div class="badge-icon blue">⬡ MAC ROCKETRY</div><div class="badge-title" style="color:var(--accent)">Propulsion Sub-Team</div><div class="badge-sub blue">McMaster University<br>Hybrid Rocket Engine<br>Sep 2025 – Present</div></div>
-      <div class="badge-item b-gold"><div class="badge-icon gold">★ NSS AWARDS</div><div class="badge-title" style="color:var(--gold)">3× Int'l Recognition</div><div class="badge-sub gold">1st Place · NSS 2025<br>1st Place · NSS 2024<br>Hon. Mention · NSS 2024</div></div>
+      <div class="badge-item"><div class="badge-kicker">Industry</div><div class="badge-title">Canam Group</div><div class="badge-sub">Lean Manufacturing Intern<br>May – Aug 2026</div></div>
+      <div class="badge-item"><div class="badge-kicker">Design team</div><div class="badge-title">McMaster Rocketry</div><div class="badge-sub">Propulsion sub-team<br>Sep 2025 – present</div></div>
+      <div class="badge-item award"><div class="badge-kicker">Awards</div><div class="badge-title">3× NSS international</div><div class="badge-sub">1st place 2024 &amp; 2025<br>Honourable mention 2024</div></div>
     </div>
     <div class="hero-btns">
-      <a href="#projects" class="btn btn-p">View Projects</a>
-      <a href="#contact" class="btn btn-o">Get In Touch</a>
-      <a href="https://www.linkedin.com/in/aaron-kumar-6680131b5" target="_blank" class="btn btn-o">LinkedIn ↗</a>
-      <a href="https://aaron-k07.github.io/resume.pdf" target="_blank" class="btn btn-o">Resume ↗</a>
+      <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-p">View résumé</a>
+      <a href="#projects" class="btn btn-o">See projects</a>
+      <a href="https://www.linkedin.com/in/aaron-kumar-6680131b5" target="_blank" rel="noopener" class="btn btn-o">LinkedIn</a>
     </div>
   </div>
 </section>
 
-<section id="about" style="padding-top:16px">
-  <div class="sec-label reveal">SPECIFICATION SHEET</div>
-  <h2 class="sec-title reveal">About Me</h2>
-  <div class="stats-bar reveal">
-    <div class="stat"><span class="stat-n" data-target="3" data-suffix="×">0</span><span class="stat-l">Intl. Awards</span></div>
-    <div class="stat"><span class="stat-n" data-target="5" data-suffix="+">0</span><span class="stat-l">Projects</span></div>
-    <div class="stat"><span class="stat-n" data-target="2025" data-suffix="">0</span><span class="stat-l">Mac Rocketry</span></div>
-    <div class="stat"><span class="stat-n" data-target="2026" data-suffix="">0</span><span class="stat-l">Canam Intern</span></div>
+<section id="about">
+  <h2 class="sec-title">About</h2>
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-n">3×</span><span class="stat-l">International design awards (NSS)</span></div>
+    <div class="stat"><span class="stat-n">$22.8K</span><span class="stat-l">Cost savings delivered at Canam Group</span></div>
+    <div class="stat"><span class="stat-n">&lt;1 min</span><span class="stat-l">Frame inspection time, down from 3 weeks</span></div>
+    <div class="stat"><span class="stat-n">5</span><span class="stat-l">Engineering projects, concept to prototype</span></div>
   </div>
-  <div class="specs-outer reveal">
-    <div class="specs-left">
-      <div class="spec-box" data-id="SPEC-001">
-        <p class="spec-lbl">Current Status</p><p class="spec-val">2nd Year — B.Eng. Mechanical Engineering</p>
-        <p class="spec-lbl">Institution</p><p class="spec-val">McMaster University · Hamilton, ON</p>
-        <p class="spec-lbl">Focus Areas</p>
-        <ul class="spec-list">
-          <li>Propulsion Systems &amp; Hybrid Rocket Engines</li>
-          <li>Aerospace &amp; Space Systems Design</li>
-          <li>CAD, Prototyping &amp; Mechanical Design</li>
-          <li>Lean Manufacturing, 5S &amp; A3 Problem Solving</li>
-          <li>Metrology &amp; Inspection</li>
-        </ul>
-      </div>
-      <div class="spec-box" data-id="SPEC-002">
-        <p class="spec-lbl">Education</p><p class="spec-val">McMaster University · 2025–Present</p>
-        <ul class="spec-list">
-          <li>B.Eng. Mechanical Engineering</li>
-          <li>McMaster Rocketry — Propulsion Sub-Team</li>
-          <li>Central Peel Secondary School · OSSD 2025</li>
-        </ul><br>
-        <p class="spec-lbl">Recognition</p>
-        <ul class="spec-list">
-          <li>Peel DSB &amp; City of Brampton — STEM Leadership</li>
-          <li>Founder — Advancing Future Innovators (AFI), STEAM workshops across Ontario</li>
-        </ul>
+  <div class="about-grid">
+    <div class="spec-box">
+      <h3>Profile</h3>
+      <p>Mechanical engineering student with strong interests in aerospace, propulsion, and mechanical system design. Experience spans space systems design, CAD, lean manufacturing, and leading multidisciplinary project teams.</p>
+      <p class="spec-lbl">Focus areas</p>
+      <ul class="spec-list">
+        <li>Propulsion systems and hybrid rocket engines</li>
+        <li>Aerospace and space systems design</li>
+        <li>CAD, prototyping, and mechanical design</li>
+        <li>Lean manufacturing, 5S, and A3 problem solving</li>
+        <li>Metrology and inspection</li>
+      </ul>
+    </div>
+    <div class="spec-box">
+      <h3>Education</h3>
+      <ul class="spec-list">
+        <li>McMaster University<span class="sub">B.Eng., Mechanical Engineering · 2025 – present</span></li>
+        <li>Central Peel Secondary School<span class="sub">Ontario Secondary School Diploma · 2025</span></li>
+      </ul>
+      <p class="spec-lbl">Leadership &amp; recognition</p>
+      <ul class="spec-list">
+        <li>Founder, Advancing Future Innovators (AFI)<span class="sub">Hands-on STEAM workshops for students across Ontario</span></li>
+        <li>Recognized by Peel District School Board and City of Brampton for STEM leadership</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <h2 class="sec-title">Experience</h2>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-date">May – Aug 2026</div>
+      <div>
+        <div class="exp-role">Lean Manufacturing Intern</div>
+        <div class="exp-org">Canam Group, Operational Excellence · Mississauga, ON</div>
+        <div class="exp-desc">
+          <ul>
+            <li>Led an A3 consumables cost-reduction project, delivering $22,790.65 in savings (79.4% total reduction) through root-cause analysis of consumption drivers and standardized usage controls.</li>
+            <li>Proposed an efficiency upgrade for Roll Former #14, projected to increase line uptime by up to 4.7%.</li>
+            <li>Raised 5S audit scores across 3 production areas by an average of 4.3%.</li>
+            <li>Designed and deployed a portable metrology jig that cut a 3-week frame inspection cycle to under one minute (see <a href="#proj-jig">Projects</a>).</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="airplane-panel">
-      <div class="airplane-panel-header">// DESIGN SOFTWARE SUITE — INSTALLED TOOLS</div>
-      <div style="padding:14px 14px 8px;border-bottom:1px solid var(--line)">
-        <svg viewBox="0 0 480 180" width="100%" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <path d="M60 90 Q80 80 160 85 L380 85 Q430 85 450 90 Q430 95 380 95 L160 95 Q80 100 60 90 Z" stroke="#3d84b8" stroke-width="1" fill="rgba(26,58,92,0.2)"/>
-          <path d="M60 90 Q30 90 10 90" stroke="#5bc8f5" stroke-width="1"/>
-          <path d="M200 87 L180 40 L260 75 L340 78 L340 87 Z" stroke="#4a9fd4" stroke-width="1" fill="rgba(74,159,212,0.07)"/>
-          <path d="M200 93 L180 140 L260 105 L340 102 L340 93 Z" stroke="#4a9fd4" stroke-width="1" fill="rgba(74,159,212,0.07)"/>
-          <path d="M370 88 L360 55 L390 84 Z" stroke="#4a9fd4" stroke-width="0.8" fill="rgba(74,159,212,0.05)"/>
-          <path d="M370 92 L360 125 L390 96 Z" stroke="#4a9fd4" stroke-width="0.8" fill="rgba(74,159,212,0.05)"/>
-          <path d="M380 90 L420 70 L440 75 L440 90 Z" stroke="#3d84b8" stroke-width="0.7" fill="none"/>
-          <path d="M380 90 L420 110 L440 105 L440 90 Z" stroke="#3d84b8" stroke-width="0.7" fill="none"/>
-          <ellipse cx="230" cy="65" rx="15" ry="6" stroke="#5bc8f5" stroke-width="0.8"/>
-          <ellipse cx="230" cy="115" rx="15" ry="6" stroke="#5bc8f5" stroke-width="0.8"/>
-          <line x1="0" y1="90" x2="480" y2="90" stroke="#2a5f8a" stroke-width="0.4" stroke-dasharray="6,4"/>
-          <line x1="10" y1="10" x2="450" y2="10" stroke="#2a5f8a" stroke-width="0.5"/>
-          <line x1="10" y1="7" x2="10" y2="13" stroke="#2a5f8a" stroke-width="0.6"/><line x1="450" y1="7" x2="450" y2="13" stroke="#2a5f8a" stroke-width="0.6"/>
-          <text x="210" y="8" fill="#3d84b8" font-family="monospace" font-size="7">OVERALL LENGTH</text>
-          <text x="12" y="87" fill="#5bc8f5" font-family="monospace" font-size="7">NOSE</text>
-          <text x="185" y="32" fill="#4a9fd4" font-family="monospace" font-size="7">WING</text>
-          <text x="218" y="55" fill="#4a9fd4" font-family="monospace" font-size="7">ENG</text>
-          <text x="218" y="130" fill="#4a9fd4" font-family="monospace" font-size="7">ENG</text>
-          <text x="355" y="48" fill="#4a9fd4" font-family="monospace" font-size="7">V-STAB</text>
-          <text x="430" y="80" fill="#3d84b8" font-family="monospace" font-size="7">H-STAB</text>
-          <text x="130" y="175" fill="#3d84b8" font-family="monospace" font-size="7">PLAN VIEW — SCALE 1:200</text>
-        </svg>
+    <div class="exp-item">
+      <div class="exp-date">Sep 2025 – present</div>
+      <div>
+        <div class="exp-role">Propulsion Team Member</div>
+        <div class="exp-org">McMaster Rocketry Team · Hamilton, ON</div>
+        <div class="exp-desc">Contributing to the design and development of McMaster University's first hybrid rocket engine as part of the propulsion sub-team. Supporting mechanical design, subsystem development, and hardware testing across propulsion components, with a hand in systems integration and iterative design refinement.</div>
       </div>
-      <div class="airplane-panel-body">
-        <div class="tool-row"><div class="tool-dot"></div><span class="tool-name">Autodesk Inventor</span><span class="tool-tag">PRIMARY CAD</span><div class="tool-bar-wrap"><div class="tool-bar" style="width:85%"></div></div></div>
-        <div class="tool-row"><div class="tool-dot"></div><span class="tool-name">SolidWorks</span><span class="tool-tag">MECHANICAL CAD</span><div class="tool-bar-wrap"><div class="tool-bar" style="width:80%"></div></div></div>
-        <div class="tool-row"><div class="tool-dot"></div><span class="tool-name">Onshape</span><span class="tool-tag">COLLABORATIVE</span><div class="tool-bar-wrap"><div class="tool-bar" style="width:75%"></div></div></div>
-        <div class="tool-row"><div class="tool-dot"></div><span class="tool-name">Shapr3D</span><span class="tool-tag">PARAMETRIC</span><div class="tool-bar-wrap"><div class="tool-bar" style="width:70%"></div></div></div>
-        <div class="tool-row"><div class="tool-dot"></div><span class="tool-name">Python</span><span class="tool-tag">SCRIPTING</span><div class="tool-bar-wrap"><div class="tool-bar" style="width:65%"></div></div></div>
-        <div class="tool-row"><div class="tool-dot"></div><span class="tool-name">3D Printing (FDM)</span><span class="tool-tag">PROTOTYPING</span><div class="tool-bar-wrap"><div class="tool-bar" style="width:82%"></div></div></div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Sep 2023 – Jun 2025</div>
+      <div>
+        <div class="exp-role">Initiative Contributor</div>
+        <div class="exp-org">Peel Engineering and Math Learning Initiative · Ontario</div>
+        <div class="exp-desc">Supported outreach efforts expanding student access to engineering, math, and applied technical learning across the Peel region.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Sep 2022 – Jun 2025</div>
+      <div>
+        <div class="exp-role">Teaching Assistant / Instructor</div>
+        <div class="exp-org">Spirit of Math · Ontario</div>
+        <div class="exp-desc">Delivered advanced mathematics instruction, building student problem-solving and logical reasoning skills in a competitive enrichment environment.</div>
       </div>
     </div>
   </div>
 </section>
 
 <section id="projects">
-  <div class="sec-label reveal">TECHNICAL DRAWINGS</div>
-  <h2 class="sec-title reveal">Projects</h2>
+  <h2 class="sec-title">Projects</h2>
   <div class="proj-grid">
-    <div class="proj-card flagship" style="transition-delay:0s">
-      <div class="proj-header"><span class="proj-id">PROJ-001 // CANAM GROUP · INDUSTRY</span><span class="status s-done">&#9679; DEPLOYED 2026</span></div>
+    <article class="proj-card flagship" id="proj-jig">
+      <div class="proj-header"><span class="proj-id">Proj-001</span><span class="status s-done">Deployed</span></div>
       <div class="proj-body">
         <h3 class="proj-title">Portable Metrology Jig</h3>
-        <p class="proj-desc">Designed and built a portable inspection fixture that functions as a self-contained metrology lab on the shop floor — scanning surface defects and measuring feature-to-feature distances across a full structural frame without moving it. Replaced a 3-week scan-and-transport workflow with an in-place inspection that takes under one minute. Owned the project end to end: concept CAD, prototyping, and on-site validation.</p>
-        <div class="proj-tags"><span class="tag">Mechanical Design</span><span class="tag">Metrology</span><span class="tag">Fixture Design</span><span class="tag">Prototyping</span><span class="tag">Lean Manufacturing</span></div>
+        <p class="proj-meta">Canam Group internship · 2026</p>
+        <p class="proj-desc">A portable inspection fixture that works as a self-contained metrology lab on the shop floor, scanning surface defects and measuring feature-to-feature distances across a full structural frame without moving it. It replaced a 3-week scan-and-transport workflow with an in-place inspection that takes under one minute. I owned the project end to end: concept CAD, prototyping, and on-site validation.</p>
+        <div class="proj-tags"><span class="tag">Mechanical design</span><span class="tag">Metrology</span><span class="tag">Fixture design</span><span class="tag">Prototyping</span><span class="tag">Lean manufacturing</span></div>
       </div>
-    </div>
-    <div class="proj-card" style="transition-delay:0.1s">
-      <div class="proj-header"><span class="proj-id">PROJ-002 // ENG1P13</span><span class="status s-done">● COMPLETE</span></div>
+    </article>
+    <article class="proj-card">
+      <div class="proj-header"><span class="proj-id">Proj-002</span><span class="status s-done">Complete</span></div>
       <div class="proj-body">
         <h3 class="proj-title">Robotic End Effector</h3>
-        <p class="proj-desc">Gear-driven end effector for a Q-arm robotic system simulating warehouse order fulfillment. Served as Subject Matter Expert — designed initial concept, led all CAD iterations, produced exploded drawings, and wrote the Python customer_summary() function. Redesigned final gripper to extend leverage and shorten arms for improved torque output.</p>
-        <div class="proj-tags"><span class="tag">Autodesk Inventor</span><span class="tag">Python</span><span class="tag">Gear Design</span><span class="tag">Robotics</span><span class="tag">3D Printing</span></div>
-        <div class="proj-links"><a href="https://loving-orchestra-a90.notion.site/P1-End-Effector-2dd60f3d73ef81b49e65c26e7eda62b2" target="_blank" class="plink">View Full Report</a></div>
+        <p class="proj-meta">ENG1P13, McMaster · 2025</p>
+        <p class="proj-desc">Gear-driven end effector for a Q-arm robotic system simulating warehouse order fulfillment. As Subject Matter Expert, I designed the initial concept, led all CAD iterations, produced the exploded drawings, and wrote the Python customer_summary() function. I redesigned the final gripper with longer leverage and shorter arms for more torque.</p>
+        <div class="proj-tags"><span class="tag">Autodesk Inventor</span><span class="tag">Python</span><span class="tag">Gear design</span><span class="tag">Robotics</span><span class="tag">3D printing</span></div>
+        <div class="proj-links"><a href="https://loving-orchestra-a90.notion.site/P1-End-Effector-2dd60f3d73ef81b49e65c26e7eda62b2" target="_blank" rel="noopener" class="plink">Read the full report</a></div>
       </div>
-    </div>
-    <div class="proj-card" style="transition-delay:0.2s">
-      <div class="proj-header"><span class="proj-id">PROJ-003 // ENG1P13</span><span class="status s-done">● COMPLETE</span></div>
+    </article>
+    <article class="proj-card">
+      <div class="proj-header"><span class="proj-id">Proj-003</span><span class="status s-done">Complete</span></div>
       <div class="proj-body">
         <h3 class="proj-title">Motorized Storage Device</h3>
-        <p class="proj-desc">Motorized lift for a powerchair user with rheumatoid arthritis. Rack-and-pinion drive with gearbox-amplified DC motors, parallel 9V batteries, and single-button interface for autonomous item retrieval. Led all CAD iterations and ~80% of electronics and wiring; used BambuLab P1S 3D printer for same-day rapid prototyping.</p>
-        <div class="proj-tags"><span class="tag">Autodesk Inventor</span><span class="tag">3D Printing</span><span class="tag">Rack &amp; Pinion</span><span class="tag">Embedded Systems</span><span class="tag">Assistive Tech</span></div>
-        <div class="proj-links"><a href="https://loving-orchestra-a90.notion.site/P3-Motorized-Storage-Device-2dd60f3d73ef811fb88ddfb97546571e?pvs=74" target="_blank" class="plink">View Full Report</a></div>
+        <p class="proj-meta">ENG1P13, McMaster · 2026</p>
+        <p class="proj-desc">Motorized lift for a powerchair user with rheumatoid arthritis: a rack-and-pinion drive with gearbox-amplified DC motors, parallel 9V batteries, and a single-button interface for retrieving items unassisted. I led all CAD iterations and about 80% of the electronics and wiring, using a BambuLab P1S for same-day prototyping.</p>
+        <div class="proj-tags"><span class="tag">Autodesk Inventor</span><span class="tag">3D printing</span><span class="tag">Rack and pinion</span><span class="tag">Embedded systems</span><span class="tag">Assistive tech</span></div>
+        <div class="proj-links"><a href="https://loving-orchestra-a90.notion.site/P3-Motorized-Storage-Device-2dd60f3d73ef811fb88ddfb97546571e?pvs=74" target="_blank" rel="noopener" class="plink">Read the full report</a></div>
       </div>
-    </div>
-    <div class="proj-card flagship" style="transition-delay:0.3s">
+    </article>
+    <article class="proj-card flagship">
       <div class="proj-schematic">
-        <svg width="100%" height="88" viewBox="0 0 900 88" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <svg aria-hidden="true" width="100%" height="88" viewBox="0 0 900 88" xmlns="http://www.w3.org/2000/svg" fill="none">
           <line x1="0" y1="44" x2="900" y2="44" stroke="#2a5f8a" stroke-width="0.4" stroke-dasharray="8,4"/>
           <ellipse cx="450" cy="44" rx="190" ry="28" stroke="#4a9fd4" stroke-width="1"/>
           <ellipse cx="450" cy="44" rx="125" ry="17" stroke="#4a9fd4" stroke-width="0.5" stroke-dasharray="4,3"/>
@@ -529,303 +496,103 @@ footer{border-top:1px solid var(--line);padding:16px 56px;display:flex;align-ite
           <text x="715" y="80" fill="#3d84b8" font-family="monospace" font-size="7">SOLAR ARRAY &#9655;</text>
         </svg>
       </div>
-      <div class="proj-header"><span class="proj-id">PROJ-004 // NSS COMPETITION · FLAGSHIP</span><span class="status s-award">&#9733; 1ST PLACE — NSS 2025</span></div>
+      <div class="proj-header"><span class="proj-id">Proj-004</span><span class="status s-award">1st place, NSS 2025</span></div>
       <div class="proj-body">
-        <h3 class="proj-title">ASTRAEUS II</h3>
-        <p class="proj-desc">Co-developed an award-winning space agriculture habitat for long-duration human settlement, submitted to the NSS Live in a Healthy Space Design Competition. Led structural design and systems integration of a sustainable extraterrestrial agricultural module. Key innovations: magnetorheological fluid tilling system, AI-powered automated pollination vehicle, frequency-optimized plant growth (PAFT system), and integrated hydroponic/aeroponic/soil-based farming — achieving near 100% space efficiency and capacity for up to 592,391 inhabitants per settlement.</p>
-        <div class="proj-tags"><span class="tag">Shapr3D</span><span class="tag">Space Systems</span><span class="tag">Structural Design</span><span class="tag">Systems Integration</span><span class="tag">Research</span></div>
-        <div class="proj-links"><a href="https://aaron-k07.github.io/mainsub.pdf" target="_blank" class="plink">View Main Submission</a><a href="https://aaron-k07.github.io/eden.pdf" target="_blank" class="plink">View Eden Garden Submission</a></div>
+        <h3 class="proj-title">ASTRAEUS II: Eden Garden Module</h3>
+        <p class="proj-meta">NSS Live in a Healthy Space Design Competition · 2025</p>
+        <p class="proj-desc">An award-winning space agriculture habitat for long-duration human settlement. I led structural design and systems integration of the sustainable agricultural module. Key innovations include a magnetorheological fluid tilling system, an AI-powered pollination vehicle, frequency-optimized plant growth (PAFT), and combined hydroponic, aeroponic, and soil-based farming, reaching near 100% space efficiency and capacity for up to 592,391 inhabitants per settlement.</p>
+        <div class="proj-tags"><span class="tag">Shapr3D</span><span class="tag">Space systems</span><span class="tag">Structural design</span><span class="tag">Systems integration</span><span class="tag">Research</span></div>
+        <div class="proj-links"><a href="mainsub.pdf" target="_blank" rel="noopener" class="plink">Main submission (PDF)</a><a href="eden.pdf" target="_blank" rel="noopener" class="plink">Eden Garden submission (PDF)</a></div>
       </div>
-    </div>
-    <div class="proj-card flagship" style="transition-delay:0.4s">
-      <div class="proj-header"><span class="proj-id">PROJ-005 // INDEPENDENT</span><span class="status s-done">&#9679; COMPLETE 2024</span></div>
+    </article>
+    <article class="proj-card flagship">
+      <div class="proj-header"><span class="proj-id">Proj-005</span><span class="status s-done">Complete</span></div>
       <div class="proj-body">
         <h3 class="proj-title">HHO Generator &amp; Ion Thruster</h3>
-        <p class="proj-desc">Built and tested a functional hydrogen-oxygen generator prototype exploring electrolysis and clean-energy applications. Alongside this, conducted independent ion thruster and small-scale propulsion design work — hands-on exploration of experimental propulsion concepts.</p>
-        <div class="proj-tags"><span class="tag">Electrolysis</span><span class="tag">Prototyping</span><span class="tag">Clean Energy</span><span class="tag">Propulsion</span><span class="tag">Experimental</span></div>
+        <p class="proj-meta">Independent · 2024</p>
+        <p class="proj-desc">Built and tested a working hydrogen-oxygen generator prototype to explore electrolysis and clean-energy applications. Alongside it, I did independent ion thruster and small-scale propulsion design work as hands-on exploration of experimental propulsion concepts.</p>
+        <div class="proj-tags"><span class="tag">Electrolysis</span><span class="tag">Prototyping</span><span class="tag">Clean energy</span><span class="tag">Propulsion</span></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="sec-label reveal">OPERATIONAL LOG</div>
-  <h2 class="sec-title reveal">Experience</h2>
-  <div class="exp-list">
-    <div class="exp-item" style="transition-delay:0s"><div><div class="exp-role">Lean Manufacturing Intern</div><div class="exp-org">Canam Group · Mississauga, ON</div><div class="exp-desc">Operational Excellence team in a structural steel fabrication environment.<ul><li>Led an A3 consumables cost-reduction project, delivering $22,790.65 in savings (79.4% total reduction) through root-cause analysis of consumption drivers and standardized usage controls.</li><li>Proposed an efficiency upgrade for Roll Former #14, projected to increase line uptime by up to 4.7%.</li><li>Raised 5S audit scores across 3 production areas by an average of 4.3%.</li><li>Designed and deployed a portable metrology jig that cut a 3-week frame inspection cycle to under one minute (see <a href="#projects">Projects</a>).</li></ul></div><span class="exp-badge">&#9679; $22,790 IN SAVINGS DELIVERED</span></div><div class="exp-date">May – Aug 2026</div></div>
-    <div class="exp-item" style="transition-delay:0.1s"><div><div class="exp-role">Propulsion Team Member</div><div class="exp-org">McMaster Rocketry Team · Hamilton, ON</div><div class="exp-desc">Contributing to the design and development of McMaster University's first hybrid rocket engine as part of the propulsion sub-team. Supporting mechanical design, subsystem development, and hardware testing across propulsion components, with a hand in systems integration and iterative design refinement.</div></div><div class="exp-date">Sep 2025 – Present</div></div>
-    <div class="exp-item" style="transition-delay:0.2s"><div><div class="exp-role">Initiative Contributor</div><div class="exp-org">Peel Engineering and Math Learning Initiative · Ontario</div><div class="exp-desc">Supported outreach efforts expanding student access to engineering, math, and applied technical learning across the Peel region.</div></div><div class="exp-date">Sep 2023 – Jun 2025</div></div>
-    <div class="exp-item" style="transition-delay:0.3s"><div><div class="exp-role">Teaching Assistant / Instructor</div><div class="exp-org">Spirit of Math · Ontario, Canada</div><div class="exp-desc">Delivered advanced mathematics instruction, building student problem-solving and logical reasoning skills in a competitive enrichment environment.</div></div><div class="exp-date">Sep 2022 – Jun 2025</div></div>
+    </article>
   </div>
 </section>
 
 <section id="skills">
-  <div class="sec-label reveal">MATERIAL PROPERTIES</div>
-  <h2 class="sec-title reveal">Skills &amp; Tools</h2>
-  <div class="skills-grid reveal">
+  <h2 class="sec-title">Skills</h2>
+  <div class="skills-grid">
     <div class="skill-group">
-      <div class="sg-title">// CAD &amp; Design</div>
-      <div class="sb-row"><div class="sb-name">Autodesk Inventor<span class="sb-pct">85%</span></div><div class="sb-track"><div class="sb-fill" data-w="85"></div></div></div>
-      <div class="sb-row"><div class="sb-name">SolidWorks<span class="sb-pct">80%</span></div><div class="sb-track"><div class="sb-fill" data-w="80"></div></div></div>
-      <div class="sb-row"><div class="sb-name">Onshape<span class="sb-pct">75%</span></div><div class="sb-track"><div class="sb-fill" data-w="75"></div></div></div>
-      <div class="sb-row"><div class="sb-name">Shapr3D<span class="sb-pct">70%</span></div><div class="sb-track"><div class="sb-fill" data-w="70"></div></div></div>
-      <div class="sb-row"><div class="sb-name">3D Printing (FDM)<span class="sb-pct">82%</span></div><div class="sb-track"><div class="sb-fill" data-w="82"></div></div></div>
+      <h3>CAD &amp; design</h3>
+      <ul><li>Autodesk Inventor</li><li>SolidWorks</li><li>Onshape</li><li>Shapr3D</li><li>3D printing (FDM)</li></ul>
     </div>
     <div class="skill-group">
-      <div class="sg-title">// Engineering</div>
-      <div class="sb-row"><div class="sb-name">Propulsion Systems<span class="sb-pct">75%</span></div><div class="sb-track"><div class="sb-fill" data-w="75"></div></div></div>
-      <div class="sb-row"><div class="sb-name">Space Systems Design<span class="sb-pct">70%</span></div><div class="sb-track"><div class="sb-fill" data-w="70"></div></div></div>
-      <div class="sb-row"><div class="sb-name">Mechanical Prototyping<span class="sb-pct">80%</span></div><div class="sb-track"><div class="sb-fill" data-w="80"></div></div></div>
-      <div class="sb-row"><div class="sb-name">Lean Manufacturing<span class="sb-pct">60%</span></div><div class="sb-track"><div class="sb-fill" data-w="60"></div></div></div>
+      <h3>Engineering</h3>
+      <ul><li>Propulsion systems</li><li>Space systems design</li><li>Mechanical prototyping</li><li>Fixture design</li><li>Hardware testing</li></ul>
     </div>
     <div class="skill-group">
-      <div class="sg-title">// Technical</div>
-      <div class="sb-row"><div class="sb-name">Python<span class="sb-pct">65%</span></div><div class="sb-track"><div class="sb-fill" data-w="65"></div></div></div>
-      <div class="sb-row"><div class="sb-name">Hardware Testing<span class="sb-pct">72%</span></div><div class="sb-track"><div class="sb-fill" data-w="72"></div></div></div>
-      <div class="sb-row"><div class="sb-name">Technical Presentations<span class="sb-pct">90%</span></div><div class="sb-track"><div class="sb-fill" data-w="90"></div></div></div>
-      <div class="sb-row"><div class="sb-name">Research &amp; Documentation<span class="sb-pct">85%</span></div><div class="sb-track"><div class="sb-fill" data-w="85"></div></div></div>
+      <h3>Lean &amp; quality</h3>
+      <ul><li>Lean manufacturing</li><li>5S</li><li>A3 problem solving</li><li>Root-cause analysis</li><li>Metrology &amp; inspection</li></ul>
+    </div>
+    <div class="skill-group">
+      <h3>Technical</h3>
+      <ul><li>Python</li><li>Research &amp; documentation</li><li>Technical presentations</li><li>Team collaboration</li></ul>
     </div>
   </div>
-  <div class="skill-extra reveal"><span class="sg-title">// Also</span><div class="proj-tags"><span class="tag">5S</span><span class="tag">A3 Problem Solving</span><span class="tag">Root-Cause Analysis</span><span class="tag">Metrology &amp; Inspection</span><span class="tag">Fixture Design</span></div></div>
 </section>
 
 <section id="contact">
-  <div class="sec-label reveal">INTERFACE PANEL</div>
-  <h2 class="sec-title reveal">Contact</h2>
-  <div class="contact-grid reveal">
-    <div>
-      <div class="contact-panel">
-        <div class="c-row"><div class="c-icon">&#127979;</div><div><div class="c-lbl">UNIVERSITY</div><div class="c-val">McMaster · B.Eng. Mechanical Engineering</div></div></div>
-        <a href="https://www.linkedin.com/in/aaron-kumar-6680131b5" target="_blank" class="c-link-btn"><div style="display:flex;align-items:center;gap:10px"><div class="c-icon" style="flex-shrink:0">in</div><div><div class="c-lbl">LINKEDIN</div><div class="c-val">aaron-kumar-6680131b5 ↗</div></div></div></a>
-        <div class="c-row"><div class="c-icon">&#8853;</div><div><div class="c-lbl">LOCATION</div><div class="c-val">Ontario, Canada · Open to Remote</div></div></div>
-      </div>
-      <div class="status-panel">
-        <p>INSTITUTION: McMaster University<br>PROGRAM: B.Eng. Mechanical Engineering<br>SEEKING: Engineering Internship / Co-op<br>TERM: Summer / Fall 2027<br>STATUS: <span>&#9679; AVAILABLE</span></p>
-      </div>
+  <h2 class="sec-title">Contact</h2>
+  <div class="contact-grid">
+    <div class="contact-panel">
+      <a class="c-row" href="mailto:aaron05k55@gmail.com"><span class="c-lbl">Email</span><span class="c-val">aaron05k55@gmail.com</span></a>
+      <a class="c-row" href="https://www.linkedin.com/in/aaron-kumar-6680131b5" target="_blank" rel="noopener"><span class="c-lbl">LinkedIn</span><span class="c-val">linkedin.com/in/aaron-kumar-6680131b5</span></a>
+      <a class="c-row" href="resume.pdf" target="_blank" rel="noopener"><span class="c-lbl">Résumé</span><span class="c-val">Download PDF</span></a>
+      <div class="c-row"><span class="c-lbl">Location</span><span class="c-val">Ontario, Canada · open to remote</span></div>
+      <div class="c-row"><span class="c-lbl">Availability</span><span class="c-val"><span class="avail">Available</span> for engineering internships and co-ops, summer / fall 2027</span></div>
     </div>
-    <div>
-      <div id="form-container" class="form-panel">
-        <form id="contact-form" action="https://formspree.io/f/xqewdpgg" method="POST">
-          <div class="f-group"><label class="f-lbl" for="name">// NAME</label><input type="text" id="name" name="name" class="f-input" placeholder="Your Name" required></div>
-          <div class="f-group"><label class="f-lbl" for="email">// EMAIL</label><input type="email" id="email" name="email" class="f-input" placeholder="your@email.com" required><span id="email-error" class="f-error" style="display:none"></span></div>
-          <div class="f-group"><label class="f-lbl" for="message">// MESSAGE</label><textarea id="message" name="message" class="f-input" placeholder="What's on your mind?" required></textarea><span id="message-error" class="f-error" style="display:none"></span></div>
-          <span id="form-error" class="f-error" style="display:none;margin-bottom:10px"></span>
-          <button type="submit" id="submit-btn" class="btn btn-p" style="width:100%">TRANSMIT MESSAGE &#8594;</button>
-        </form>
-      </div>
+    <div id="form-container" class="form-panel">
+      <form id="contact-form" action="https://formspree.io/f/xqewdpgg" method="POST">
+        <div class="f-group"><label class="f-lbl" for="name">Name</label><input type="text" id="name" name="name" class="f-input" autocomplete="name" required></div>
+        <div class="f-group"><label class="f-lbl" for="email">Email</label><input type="email" id="email" name="email" class="f-input" autocomplete="email" required><span id="email-error" class="f-error" style="display:none"></span></div>
+        <div class="f-group"><label class="f-lbl" for="message">Message</label><textarea id="message" name="message" class="f-input" required></textarea><span id="message-error" class="f-error" style="display:none"></span></div>
+        <span id="form-error" class="f-error" style="display:none;margin-bottom:10px"></span>
+        <button type="submit" id="submit-btn" class="btn btn-p">Send message</button>
+      </form>
     </div>
   </div>
-  <div class="divider">END OF DOCUMENT</div>
 </section>
 </main>
 
 <footer>
-  <span>&#169; 2026 AARON KUMAR — ALL RIGHTS RESERVED</span>
-  <span>DWG NO. AK-PORT-001 REV I</span>
-  <span>McMaster University · B.Eng. Mechanical Engineering</span>
+  <div class="title-block">
+    <div class="tb-cell"><span class="tb-lbl">Title</span><span class="tb-val">Aaron Kumar — Portfolio</span></div>
+    <div class="tb-cell"><span class="tb-lbl">Dwg no.</span><span class="tb-val">AK-PORT-001</span></div>
+    <div class="tb-cell"><span class="tb-lbl">Rev</span><span class="tb-val">J</span></div>
+    <div class="tb-cell"><span class="tb-lbl">Date</span><span class="tb-val">Oct 2026</span></div>
+  </div>
 </footer>
 
 <script>
-/* ── LOADER (150ms delayed start prevents 0% bug) ── */
+/* Mobile menu */
 (function(){
-  var loader=document.getElementById('loader');
-  var bar=document.getElementById('loader-bar');
-  var status=document.getElementById('loader-status');
-  var pct=document.getElementById('loader-pct');
-  var msgs=['INITIALIZING...','LOADING MODULES...','CALIBRATING...','ONLINE'];
-  var progress=0, mi=0;
-  setTimeout(function(){
-    var iv=setInterval(function(){
-      try{
-        progress+=Math.random()*13+5;
-        if(progress>=100)progress=100;
-        bar.style.width=progress+'%';
-        pct.textContent=Math.floor(progress)+'%';
-        var m=Math.min(Math.floor(progress/100*msgs.length),msgs.length-1);
-        if(m>mi){mi=m;status.textContent=msgs[mi];}
-        if(progress>=100){
-          clearInterval(iv);
-          setTimeout(function(){
-            loader.classList.add('done');
-            setTimeout(function(){loader.style.display='none';},700);
-          },300);
-        }
-      }catch(e){clearInterval(iv);loader.classList.add('done');}
-    },55);
-  },150);
+  var btn=document.querySelector('.nav-toggle'),drawer=document.getElementById('nav-drawer');
+  btn.addEventListener('click',function(){var open=drawer.classList.toggle('open');btn.setAttribute('aria-expanded',open);});
+  drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){drawer.classList.remove('open');btn.setAttribute('aria-expanded','false');});});
 })();
 
-/* ── PARTICLE CANVAS ── */
+/* Highlight the nav link for the section in view */
 (function(){
-  try{
-    var c=document.getElementById('particle-canvas');
-    var ctx=c.getContext('2d');
-    var W,H,P=[];
-    function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
-    resize();
-    window.addEventListener('resize',resize);
-    for(var i=0;i<55;i++){P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.8+.5,gold:Math.random()>.8});}
-    (function draw(){
-      ctx.clearRect(0,0,W,H);
-      P.forEach(function(p){
-        p.x+=p.vx;p.y+=p.vy;
-        if(p.x<0)p.x=W;if(p.x>W)p.x=0;
-        if(p.y<0)p.y=H;if(p.y>H)p.y=0;
-        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle=p.gold?'rgba(240,192,64,0.7)':'rgba(91,200,245,0.7)';ctx.fill();
-      });
-      for(var i=0;i<P.length;i++){
-        for(var j=i+1;j<P.length;j++){
-          var dx=P[i].x-P[j].x,dy=P[i].y-P[j].y,d=Math.sqrt(dx*dx+dy*dy);
-          if(d<140){ctx.beginPath();ctx.moveTo(P[i].x,P[i].y);ctx.lineTo(P[j].x,P[j].y);ctx.strokeStyle='rgba(91,200,245,'+(0.11*(1-d/140))+')';ctx.lineWidth=0.7;ctx.stroke();}
-        }
-      }
-      requestAnimationFrame(draw);
-    })();
-  }catch(e){}
-})();
-
-/* ── CURSOR GLOW + PARALLAX ── */
-(function(){
-  var glow=document.getElementById('cursor-glow');
-  var rocket=document.getElementById('hero-rocket');
-  document.addEventListener('mousemove',function(e){
-    glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';
-    if(rocket){
-      var rx=(e.clientX/window.innerWidth-.5)*18;
-      var ry=(e.clientY/window.innerHeight-.5)*12;
-      rocket.style.transform='translateY(-50%) translate('+rx+'px,'+ry+'px)';
-    }
-  });
-})();
-
-/* ── SCROLL PROGRESS + ACTIVE NAV ── */
-(function(){
-  var prog=document.getElementById('scroll-prog');
-  var links=document.querySelectorAll('.nav-links a');
+  var links=document.querySelectorAll('.nav-links a[href^="#"]');
   var sections=document.querySelectorAll('section[id]');
-  window.addEventListener('scroll',function(){
-    var st=document.documentElement.scrollTop||document.body.scrollTop;
-    var total=document.documentElement.scrollHeight-window.innerHeight;
-    prog.style.width=(total>0?st/total*100:0)+'%';
+  function update(){
     var cur='';
-    sections.forEach(function(s){if(window.scrollY>=s.offsetTop-110)cur=s.id;});
+    sections.forEach(function(s){if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)cur=sections[sections.length-1].id;
     links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
-  },{passive:true});
-})();
-
-/* ── TYPEWRITER ── */
-(function(){
-  var el=document.getElementById('hero-eyebrow');
-  var txt='// ENGINEERING PORTFOLIO — INITIALIZING';
-  var i=0;
-  el.innerHTML='<span class="tw-cursor"></span>';
-  setTimeout(function(){
-    var iv=setInterval(function(){
-      el.innerHTML=txt.slice(0,i)+'<span class="tw-cursor"></span>';
-      i++;if(i>txt.length)clearInterval(iv);
-    },42);
-  },1000);
-})();
-
-/* ── GLITCH ── */
-(function(){
-  var el=document.getElementById('hero-name');
-  function fire(){el.style.animation='none';void el.offsetWidth;el.style.animation='glitchAnim 0.28s steps(2) forwards';}
-  setTimeout(fire,2400);
-  setInterval(fire,9000+Math.random()*5000);
-})();
-
-/* ── SCROLL REVEAL ── */
-(function(){
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-  },{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(function(r){io.observe(r);});
-})();
-
-/* ── PROJECT CARD STAGGER ── */
-(function(){
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-  },{threshold:0.07});
-  document.querySelectorAll('.proj-card').forEach(function(c){io.observe(c);});
-})();
-
-/* ── EXPERIENCE SLIDE ── */
-(function(){
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-  },{threshold:0.1});
-  document.querySelectorAll('.exp-item').forEach(function(it){io.observe(it);});
-})();
-
-/* ── SKILL BARS ── */
-(function(){
-  var done=false;
-  var io=new IntersectionObserver(function(entries){
-    if(entries[0].isIntersecting&&!done){
-      done=true;
-      document.querySelectorAll('.sb-fill').forEach(function(b){
-        var w=b.getAttribute('data-w')||'0';
-        setTimeout(function(){b.style.width=w+'%';},150);
-      });
-    }
-  },{threshold:0.15});
-  var sec=document.getElementById('skills');
-  if(sec)io.observe(sec);
-})();
-
-/* ── STAT COUNTERS ── */
-(function(){
-  var done=false;
-  function easeOut(t){return 1-Math.pow(1-t,3);}
-  function countUp(el,target,suffix){
-    var start=performance.now(),dur=1400;
-    (function step(now){
-      var t=Math.min((now-start)/dur,1);
-      el.textContent=Math.floor(easeOut(t)*target)+suffix;
-      if(t<1)requestAnimationFrame(step);else el.textContent=target+suffix;
-    })(start);
   }
-  var io=new IntersectionObserver(function(entries){
-    if(entries[0].isIntersecting&&!done){
-      done=true;
-      document.querySelectorAll('.stat-n[data-target]').forEach(function(el){
-        countUp(el,parseInt(el.getAttribute('data-target')),el.getAttribute('data-suffix')||'');
-      });
-    }
-  },{threshold:0.15});
-  var about=document.getElementById('about');
-  if(about)io.observe(about);
+  window.addEventListener('scroll',update,{passive:true});update();
 })();
 
-/* ── BUTTON RIPPLE ── */
-document.querySelectorAll('.btn').forEach(function(btn){
-  btn.addEventListener('click',function(e){
-    var r=document.createElement('span');r.className='ripple';
-    var rect=btn.getBoundingClientRect();
-    var sz=Math.max(rect.width,rect.height);
-    r.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+(e.clientX-rect.left-sz/2)+'px;top:'+(e.clientY-rect.top-sz/2)+'px';
-    btn.appendChild(r);setTimeout(function(){r.remove();},600);
-  });
-});
-
-/* ── STAMP FADE ── */
-(function(){
-  var footer=document.querySelector('footer');
-  var stamp=document.querySelector('.dwg-stamp');
-  var rev=document.querySelector('.rev');
-  var corners=document.querySelectorAll('.corner.bl,.corner.br');
-  function check(){
-    if(!footer||!stamp)return;
-    var hide=footer.getBoundingClientRect().top<window.innerHeight-80;
-    [stamp,rev,...corners].forEach(function(el){if(el)el.classList.toggle('stamp-hidden',hide);});
-  }
-  window.addEventListener('scroll',check,{passive:true});check();
-})();
-
-/* ── CONTACT FORM ── */
+/* Contact form */
 (function(){
   var form=document.getElementById('contact-form');
   if(!form)return;
@@ -836,21 +603,21 @@ document.querySelectorAll('.btn').forEach(function(btn){
   form.addEventListener('submit',async function(e){
     e.preventDefault();
     [formError,emailError,messageError].forEach(function(x){x.style.display='none';});
-    submitBtn.disabled=true;submitBtn.textContent='TRANSMITTING...';
+    submitBtn.disabled=true;submitBtn.textContent='Sending…';
     try{
-      var res=await fetch('https://formspree.io/f/xqewdpgg',{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+      var res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
       var result=await res.json();
       if(res.ok){
-        document.getElementById('form-container').innerHTML='<div class="f-success"><div class="f-success-icon">&#10003;</div><div class="f-success-title">TRANSMISSION RECEIVED</div><div class="f-success-msg">Message delivered successfully.<br>I\'ll get back to you soon.</div></div>';
+        document.getElementById('form-container').innerHTML='<div class="f-success"><div class="f-success-title">Message sent</div><div class="f-success-msg">Thanks for reaching out. I\'ll reply by email soon.</div></div>';
       }else{
         if(result.errors){result.errors.forEach(function(err){
           if(err.field==='email'){emailError.textContent=err.message;emailError.style.display='block';}
           else if(err.field==='message'){messageError.textContent=err.message;messageError.style.display='block';}
           else{formError.textContent=err.message;formError.style.display='block';}
-        });}else{formError.textContent='Transmission failed. Please try again.';formError.style.display='block';}
-        submitBtn.disabled=false;submitBtn.textContent='TRANSMIT MESSAGE →';
+        });}else{formError.textContent='The message didn\'t send. Try again, or email aaron05k55@gmail.com directly.';formError.style.display='block';}
+        submitBtn.disabled=false;submitBtn.textContent='Send message';
       }
-    }catch(err){formError.textContent='Network error. Please try again.';formError.style.display='block';submitBtn.disabled=false;submitBtn.textContent='TRANSMIT MESSAGE →';}
+    }catch(err){formError.textContent='The message didn\'t send because of a network error. Try again, or email aaron05k55@gmail.com directly.';formError.style.display='block';submitBtn.disabled=false;submitBtn.textContent='Send message';}
   });
 })();
 </script>
