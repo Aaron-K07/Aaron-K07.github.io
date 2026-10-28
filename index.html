@@ -409,6 +409,7 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
     <div class="hero-btns">
       <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-p">View résumé</a>
       <a href="#projects" class="btn btn-o">See projects</a>
+      <a href="#contact" class="btn btn-o">Get in touch</a>
       <a href="https://www.linkedin.com/in/aaron-kumar-6680131b5" target="_blank" rel="noopener" class="btn btn-o">LinkedIn</a>
     </div>
   </div>
@@ -463,7 +464,7 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
             <li>Led an A3 consumables cost-reduction project, delivering $22,790.65 in savings (79.4% total reduction) through root-cause analysis of consumption drivers and standardized usage controls.</li>
             <li>Proposed an efficiency upgrade for Roll Former #14, projected to increase line uptime by up to 4.7%.</li>
             <li>Raised 5S audit scores across 3 production areas by an average of 4.3%.</li>
-            <li>Designed and deployed a portable metrology jig that cut a 3-week frame inspection cycle to under one minute (see <a href="#proj-jig">Projects</a>).</li>
+            <li>Designed and deployed a portable metrology jig with an OpenCV measuring tool that passed a Gage R&amp;R study and cut a 3-week frame inspection cycle to under one minute (see <a href="#proj-jig">Projects</a>).</li>
           </ul>
         </div>
         <span class="exp-result">$22,790 in savings delivered</span>
@@ -504,29 +505,39 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
     <article class="proj-card flagship" id="proj-jig">
       <div class="flip">
         <div class="face front">
-          <div class="proj-header"><span class="proj-id">Proj-001</span><span class="status s-done">Deployed</span></div>
+          <div class="proj-header"><span class="proj-id">Proj-001</span><span class="status s-done">Deployed · passed Gage R&amp;R</span></div>
           <div class="proj-body">
             <h3 class="proj-title">Portable Metrology Jig</h3>
             <p class="proj-meta">Canam Group internship · 2026</p>
-            <p class="proj-desc">A portable inspection fixture that works as a self-contained metrology lab on the shop floor, scanning surface defects and measuring feature-to-feature distances across a full structural frame without moving it. It cut a 3-week inspection cycle to under one minute.</p>
-            <div class="proj-tags"><span class="tag">Mechanical design</span><span class="tag">Metrology</span><span class="tag">Fixture design</span><span class="tag">Prototyping</span><span class="tag">Lean manufacturing</span></div>
-            <div class="proj-foot"><button class="flip-btn" type="button">More details</button></div>
+            <p class="proj-desc">A 3D-printed camera fixture paired with a Python and OpenCV measuring tool I wrote, which checks hole alignment on structural parts right on the shop floor. It passed a Gage R&amp;R study and cut a 3-week inspection cycle to under one minute.</p>
+            <div class="proj-tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Computer vision</span><span class="tag">Fixture design</span><span class="tag">3D printing</span><span class="tag">Gage R&amp;R</span></div>
+            <div class="proj-foot"><button class="flip-btn" type="button">More details &amp; photos</button></div>
           </div>
         </div>
         <div class="face back" hidden>
-          <div class="proj-header"><span class="proj-id">Proj-001 · Details</span><span class="status s-done">Deployed</span></div>
+          <div class="proj-header"><span class="proj-id">Proj-001 · Details</span><span class="status s-done">Deployed · passed Gage R&amp;R</span></div>
           <div class="proj-body">
             <h3 class="proj-title">Portable Metrology Jig</h3>
-            <dl class="detail-list">
-              <dt>The problem</dt>
-              <dd>Checking a structural frame meant scanning it and transporting it for inspection, a cycle that took about three weeks per frame.</dd>
-              <dt>What I built</dt>
-              <dd>A portable fixture that brings the measurement to the frame. It scans for surface defects and measures feature-to-feature distances across the whole frame right where it sits on the shop floor.</dd>
-              <dt>My role</dt>
-              <dd>I owned it end to end: concept CAD, prototyping, and on-site validation.</dd>
-              <dt>Result</dt>
-              <dd>Inspection now happens in place in under one minute instead of three weeks. The same summer on Canam's Operational Excellence team, I also led a $22.8K consumables cost reduction.</dd>
-            </dl>
+            <div class="back-cols">
+              <dl class="detail-list">
+                <dt>The problem</dt>
+                <dd>Checking whether the holes on a structural part lined up meant scanning the part and transporting it for inspection, a cycle of about three weeks.</dd>
+                <dt>The jig</dt>
+                <dd>A 3D-printed fixture that holds the camera in a fixed position over the part, so one calibration converts pixels to millimetres for every photo taken on the shop floor.</dd>
+                <dt>The software</dt>
+                <dd>A Python tool with an OpenCV and Matplotlib interface. It zooms to each hole, the inspector clicks near the top edge, and OpenCV snaps to the true peak using local Otsu thresholding, blurring, and morphological cleanup to ignore shadows. The vertical offset between the two holes is converted to millimetres against a calibration block and judged against a 3 mm tolerance.</dd>
+                <dt>Traceability</dt>
+                <dd>Every sample is saved as an annotated image with close-up crops, filed by result, and logged to a CSV with a timestamp. A manual override exists, but it asks for confirmation and every reading taken with it is flagged in the log.</dd>
+                <dt>Result</dt>
+                <dd>The system passed a Gage R&amp;R study, and an inspection now takes under one minute in place instead of three weeks. I owned it end to end: concept CAD, the printed fixture, the code, and on-site validation.</dd>
+              </dl>
+              <div class="gallery">
+                <button class="shot" type="button" data-full="img/jig-cv-output.jpg" data-caption="Saved output: reference lines through both holes and the measured offset, here a 4.201 mm reading over the 3 mm tolerance"><img src="img/jig-cv-output.jpg" alt="Annotated measurement image with red reference lines across two holes" width="1400" height="1050" loading="lazy"></button>
+                <button class="shot" type="button" data-full="img/jig-cv-snap.jpg" data-caption="OpenCV snapping the measurement point (green) to the top edge of the hole"><img src="img/jig-cv-snap.jpg" alt="Close-up of a hole edge with a green marker on the detected peak" width="300" height="300" loading="lazy"></button>
+                <button class="shot" type="button" data-full="img/jig-render.jpg" data-caption="CAD render of the 3D-printed camera fixture"><img src="img/jig-render.jpg" alt="Render of the white 3D-printed fixture with a red camera platform" width="1002" height="882" loading="lazy"></button>
+                <button class="shot" type="button" data-full="img/jig-results-log.jpg" data-caption="Batch results log: offset in mm, pass/fail, and whether computer vision was on"><img src="img/jig-results-log.jpg" alt="Table of sample measurements with pass and fail rows" width="541" height="551" loading="lazy"></button>
+              </div>
+            </div>
             <div class="proj-foot"><button class="flip-btn" type="button">Back to summary</button></div>
           </div>
         </div>
@@ -729,11 +740,11 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
     </div>
     <div class="skill-group">
       <h3>Lean &amp; quality</h3>
-      <ul><li>Lean manufacturing</li><li>5S</li><li>A3 problem solving</li><li>Root-cause analysis</li><li>Metrology &amp; inspection</li></ul>
+      <ul><li>Lean manufacturing</li><li>5S</li><li>A3 problem solving</li><li>Root-cause analysis</li><li>Time studies</li><li>Gage R&amp;R</li><li>Metrology &amp; inspection</li></ul>
     </div>
     <div class="skill-group">
       <h3>Technical</h3>
-      <ul><li>Python</li><li>Research &amp; documentation</li><li>Technical presentations</li><li>Team collaboration</li></ul>
+      <ul><li>Python</li><li>OpenCV (computer vision)</li><li>pandas &amp; Matplotlib</li><li>Research &amp; documentation</li><li>Technical presentations</li><li>Team collaboration</li></ul>
     </div>
   </div>
 </section>
@@ -765,7 +776,7 @@ footer{position:relative;z-index:1;max-width:1120px;margin:24px auto 40px;paddin
   <div class="title-block">
     <div class="tb-cell"><span class="tb-lbl">Title</span><span class="tb-val">Aaron Kumar — Portfolio</span></div>
     <div class="tb-cell"><span class="tb-lbl">Dwg no.</span><span class="tb-val">AK-PORT-001</span></div>
-    <div class="tb-cell"><span class="tb-lbl">Rev</span><span class="tb-val">K</span></div>
+    <div class="tb-cell"><span class="tb-lbl">Rev</span><span class="tb-val">L</span></div>
     <div class="tb-cell"><span class="tb-lbl">Date</span><span class="tb-val">Oct 2026</span></div>
   </div>
 </footer>
