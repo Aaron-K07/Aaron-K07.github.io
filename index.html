@@ -68,7 +68,7 @@
         <div class="card__body">
           <span class="label">01</span>
           <h3 class="display">A three-week inspection, done in under a minute.</h3>
-          <p class="lead">At Canam Group I designed a portable metrology jig and wrote the OpenCV software behind it. It passed a Gage R&amp;R study and moved frame inspection onto the shop floor.</p>
+          <p class="lead">At Canam Group I designed a portable metrology jig and developed the OpenCV software behind it, with Google Gemini as a coding assistant. It passed a Gage R&amp;R study and moved frame inspection onto the shop floor.</p>
         </div>
         <div class="card__dim"></div>
       </div>
@@ -307,9 +307,9 @@
       <dl class="case__body">
         <div><dt class="label">Problem</dt><dd>Checking whether the holes on a structural part lined up meant scanning the part and transporting it for inspection, a cycle of about three weeks.</dd></div>
         <div><dt class="label">Fixture</dt><dd>A 3D-printed fixture holds the camera in a fixed position over the part, so a single calibration converts pixels to millimetres for every photo taken on the shop floor.</dd></div>
-        <div><dt class="label">Software</dt><dd>A Python tool with an OpenCV and Matplotlib interface. It zooms to each hole, the inspector clicks near the top edge, and OpenCV snaps to the true peak using local Otsu thresholding, blurring and morphological cleanup to ignore shadows. The vertical offset between the two holes is converted to millimetres against a calibration block and judged against a 3 mm tolerance.</dd></div>
+        <div><dt class="label">Software</dt><dd>A Python tool with an OpenCV and Matplotlib interface. It zooms to each hole, the inspector clicks near the top edge, and OpenCV snaps to the true peak using local Otsu thresholding, blurring and morphological cleanup to ignore shadows. The vertical offset between the two holes is converted to millimetres against a calibration block and judged against a 3 mm tolerance. I developed the code with Google Gemini as a coding assistant.</dd></div>
         <div><dt class="label">Traceability</dt><dd>Every sample is saved as an annotated image with close-up crops, filed by result, and logged to a CSV with a timestamp. A manual override exists, but it asks for confirmation, and every reading taken with it is flagged in the log.</dd></div>
-        <div><dt class="label">Result</dt><dd>The system passed a Gage R&amp;R study, and an inspection now takes under one minute in place instead of three weeks. I owned it end to end: concept CAD, the printed fixture, the code and on-site validation.</dd></div>
+        <div><dt class="label">Result</dt><dd>The system passed a Gage R&amp;R study, and an inspection now takes under one minute in place instead of three weeks. I owned the project end to end: concept CAD, the printed fixture, the Gemini-assisted code and on-site validation.</dd></div>
       </dl>
       <div class="case__gallery">
         <figure class="wide"><img src="img/jig-cv-output.jpg" alt="Annotated measurement image with red reference lines across two holes" width="1400" height="1050" loading="lazy"><figcaption>Saved output: reference lines through both holes and the measured offset, here a 4.201 mm reading over the 3 mm tolerance.</figcaption></figure>
